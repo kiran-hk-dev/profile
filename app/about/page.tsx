@@ -25,7 +25,7 @@ export default function AboutPage() {
               {profile.summary}
             </p>
             <p className="max-w-xl text-base leading-relaxed text-(--color-text-muted)">
-              DevOps Engineer with 2.8+ years of hands-on experience working
+              DevOps Engineer with 4.8+ years of hands-on experience working
               with modern cloud-native technologies. I specialize in
               designing CI/CD pipelines, containerizing applications,
               managing Kubernetes workloads, automating infrastructure,

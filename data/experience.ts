@@ -3,7 +3,7 @@ import { ExperienceEntry } from "@/types";
 export const experience: ExperienceEntry[] = [
   {
     role: "DevOps Engineer",
-    duration: "2.8+ Years Experience",
+    duration: "4.8+ Years Experience",
     summary:
       "Own the path from commit to production — designing pipelines, containerizing services, and keeping clusters healthy.",
     responsibilities: [
