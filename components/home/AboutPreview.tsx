@@ -17,7 +17,7 @@ export function AboutPreview() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1fr]">
           <FadeIn>
             <p className="max-w-xl text-lg leading-relaxed text-(--color-text-muted)">
-              DevOps Engineer with 2.8+ years of hands-on experience working
+              DevOps Engineer with 4.8+ years of hands-on experience working
               with modern cloud-native technologies. I specialize in
               designing CI/CD pipelines, containerizing applications,
               managing Kubernetes workloads, automating infrastructure,

@@ -83,7 +83,7 @@ npm run start
 Copy `.env.example` to `.env.local` and set your GitHub username:
 
 ```bash
-NEXT_PUBLIC_GITHUB_USERNAME=your_github_username
+NEXT_PUBLIC_GITHUB_USERNAME=kiranmychits2025
 ```
 
 This is only used to fetch featured repositories server-side for the GitHub section. If it's unset, unreachable, or rate-limited, the site automatically falls back to the static list in `data/repositories.ts` — nothing breaks either way. No tokens or secrets are required or used client-side.
