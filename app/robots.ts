@@ -1,13 +1,10 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = "https://kiranhk-devops.vercel.app";
+const siteUrl = "https://kiran-hk-portfolio.vercel.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
+    rules: { userAgent: "*", allow: "/" },
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

@@ -1,83 +1,54 @@
 "use client";
 
-import { Project } from "@/types";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { staggerItem } from "../animations/Stagger";
-import { GithubIcon } from "../icons/GithubIcon";
+import { ArrowUpRight } from "lucide-react";
+import { Project } from "@/types";
+import { Badge } from "@/components/ui/Badge";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
+  const techFlat = Object.values(project.technologies).flat().slice(0, 6);
+
   return (
-    <motion.article
-      variants={staggerItem}
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.25 }}
-      className="group flex flex-col rounded-xl border border-(--color-border) bg-(--color-surface) p-6 transition-colors hover:border-(--color-border-strong)"
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.35, delay: index * 0.06 }}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="font-mono text-xs text-(--color-accent)">{project.category}</p>
-          <h3 className="mt-1.5 font-display text-xl font-semibold text-(--color-text)">
-            {project.title}
-          </h3>
-        </div>
-        <div className="flex shrink-0 gap-2">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${project.title} on GitHub`}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-(--color-border-strong) text-(--color-text-muted) transition-colors hover:border-(--color-accent) hover:text-(--color-accent)"
-            >
-              <GithubIcon size={14} />
-            </a>
-          )}
-          {project.liveDemo && (
-            <a
-              href={project.liveDemo}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${project.title} live demo`}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-(--color-border-strong) text-(--color-text-muted) transition-colors hover:border-(--color-accent) hover:text-(--color-accent)"
-            >
-              <ArrowUpRight size={14} />
-            </a>
-          )}
-        </div>
-      </div>
-
-      <p className="mt-4 text-sm leading-relaxed text-(--color-text-muted)">
-        {project.description}
-      </p>
-
-      <ul className="mt-5 flex flex-wrap gap-1.5">
-        {project.technologies.slice(0, 6).map((tech) => (
-          <li
-            key={tech}
-            className="rounded-md border border-(--color-border-strong) px-2 py-0.5 font-mono text-[11px] text-(--color-text-muted)"
-          >
-            {tech}
-          </li>
-        ))}
-        {project.technologies.length > 6 && (
-          <li className="rounded-md px-2 py-0.5 font-mono text-[11px] text-(--color-text-faint)">
-            +{project.technologies.length - 6} more
-          </li>
-        )}
-      </ul>
-
       <Link
         href={`/projects/${project.slug}`}
-        className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-(--color-text) transition-colors group-hover:text-(--color-accent)"
+        className="group block rounded-2xl border border-border-soft bg-bg-elevated p-6 sm:p-7 hover:border-accent/40 transition-colors h-full"
       >
-        View case study
-        <ArrowUpRight
-          size={14}
-          className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-        />
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <div className="flex items-baseline gap-2 flex-wrap">
+              <h3 className="font-display text-xl text-text">{project.title}</h3>
+              {project.subtitle && <span className="font-mono-tag text-sm text-accent">/ {project.subtitle}</span>}
+            </div>
+            <p className="text-xs text-text-faint font-mono-tag mt-1">{project.category}</p>
+          </div>
+          <ArrowUpRight size={18} className="text-text-faint group-hover:text-accent transition-colors shrink-0" />
+        </div>
+
+        <p className="mt-4 text-sm text-text-muted leading-relaxed">{project.description}</p>
+
+        <div className="mt-5 flex flex-wrap gap-2">
+          {techFlat.map((t) => (
+            <Badge key={t}>{t}</Badge>
+          ))}
+        </div>
+
+        {project.kpis.length > 0 && (
+          <div className="mt-5 pt-5 border-t border-border-soft flex flex-col gap-1.5">
+            {project.kpis.map((kpi) => (
+              <p key={kpi} className="text-xs text-accent flex gap-2">
+                <span>▲</span> {kpi}
+              </p>
+            ))}
+          </div>
+        )}
       </Link>
-    </motion.article>
+    </motion.div>
   );
 }

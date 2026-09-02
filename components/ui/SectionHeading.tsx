@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils";
 
 export function SectionHeading({
   index,
@@ -14,28 +14,15 @@ export function SectionHeading({
   className?: string;
 }) {
   return (
-    <div
-      className={cn(
-        "mb-12 flex flex-col gap-4",
-        align === "center" ? "items-center text-center" : "items-start text-left",
-        className
-      )}
-    >
-      <div className="flex items-baseline gap-3">
-        {index && (
-          <span className="font-mono text-sm text-(--color-accent)">{index}</span>
-        )}
-        <h2 className="font-display text-3xl font-semibold tracking-tight text-(--color-text) sm:text-4xl">
+    <div className={cn("mb-10 sm:mb-14", align === "center" && "text-center", className)}>
+      <div className={cn("flex items-baseline gap-3", align === "center" && "justify-center")}>
+        {index && <span className="font-mono-tag text-sm text-accent">{index}</span>}
+        <h2 className="font-display text-3xl sm:text-4xl font-medium tracking-tight text-text text-balance">
           {title}
         </h2>
       </div>
       {description && (
-        <p
-          className={cn(
-            "max-w-2xl text-base text-(--color-text-muted)",
-            align === "center" && "mx-auto"
-          )}
-        >
+        <p className={cn("mt-4 max-w-2xl text-text-muted leading-relaxed", align === "center" && "mx-auto")}>
           {description}
         </p>
       )}

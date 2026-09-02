@@ -1,40 +1,56 @@
-import { stats } from "@/data/profile";
-import { FadeIn } from "../animations/FadeIn";
-import { Container } from "../ui/Container";
-import { SectionHeading } from "../ui/SectionHeading";
-import { AnimatedStat } from "./AnimatedStat";
+"use client";
+
+import { motion } from "framer-motion";
+import { Layers, Server, Cloud, ShieldCheck } from "lucide-react";
+import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { profile } from "@/data/profile";
+
+const highlights = [
+  {
+    icon: Layers,
+    title: "Full Stack Development",
+    detail: "React, Node.js, Express.js, MongoDB",
+  },
+  {
+    icon: Server,
+    title: "Backend & APIs",
+    detail: "REST API design, business logic, PostgreSQL",
+  },
+  {
+    icon: Cloud,
+    title: "Cloud & DevOps",
+    detail: "AWS, Docker, Kubernetes, Jenkins, GitLab CI/CD",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Monitoring & Security",
+    detail: "Prometheus, Grafana, container image scanning",
+  },
+];
 
 export function AboutPreview() {
   return (
-    <section id="about" className="py-20 sm:py-28">
-      <Container>
-        <SectionHeading
-          index="01"
-          title="About"
-          description="A short introduction to how I work and what I focus on."
-        />
+    <section id="about" className="scroll-mt-24">
+      <Container className="py-20 sm:py-24">
+        <SectionHeading title="About Me" />
+        <div className="grid lg:grid-cols-[1fr_1fr] gap-10 items-start">
+          <p className="text-text-muted leading-relaxed text-lg">{profile.summary}</p>
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1fr]">
-          <FadeIn>
-            <p className="max-w-xl text-lg leading-relaxed text-(--color-text-muted)">
-              DevOps Engineer with 4.8+ years of hands-on experience working
-              with modern cloud-native technologies. I specialize in
-              designing CI/CD pipelines, containerizing applications,
-              managing Kubernetes workloads, automating infrastructure,
-              implementing monitoring solutions, and improving deployment
-              reliability.
-            </p>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-(--color-text-muted)">
-              I care about systems that stay predictable under pressure —
-              pipelines that fail loudly and early, deployments that are
-              boring in the best way, and infrastructure that&rsquo;s documented
-              well enough for the next engineer to trust it.
-            </p>
-          </FadeIn>
-
-          <div className="grid grid-cols-2 gap-4">
-            {stats.map((stat) => (
-              <AnimatedStat key={stat.label} value={stat.value} label={stat.label} />
+          <div className="grid sm:grid-cols-2 gap-4">
+            {highlights.map((h, i) => (
+              <motion.div
+                key={h.title}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.35, delay: i * 0.05 }}
+                className="rounded-xl border border-border-soft bg-bg-elevated p-5"
+              >
+                <h.icon size={18} className="text-accent" />
+                <p className="mt-3 text-sm font-medium text-text">{h.title}</p>
+                <p className="mt-1 text-xs text-text-faint font-mono-tag">{h.detail}</p>
+              </motion.div>
             ))}
           </div>
         </div>

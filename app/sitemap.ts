@@ -1,21 +1,17 @@
-import { projects } from "@/data/projects";
 import type { MetadataRoute } from "next";
+import { projects } from "@/data/projects";
 
-const siteUrl = "https://kiranhk-devops.vercel.app";
+const siteUrl = "https://kiran-hk-portfolio.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/about", "/projects", "/contact"].map((path) => ({
+  const staticRoutes = ["", "/about", "/experience", "/projects", "/devops", "/contact"].map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: path === "" ? 1 : 0.7,
   }));
 
-  const projectRoutes = projects.map((project) => ({
-    url: `${siteUrl}/projects/${project.slug}`,
+  const projectRoutes = projects.map((p) => ({
+    url: `${siteUrl}/projects/${p.slug}`,
     lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
   }));
 
   return [...staticRoutes, ...projectRoutes];

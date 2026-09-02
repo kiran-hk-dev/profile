@@ -1,63 +1,53 @@
 "use client";
 
-import { experience } from "@/data/experience";
 import { motion } from "framer-motion";
+import { experience } from "@/data/experience";
+import { Badge } from "@/components/ui/Badge";
 
 export function ExperienceTimeline() {
   return (
     <div className="relative">
-      <div className="absolute left-[15px] top-2 bottom-2 w-px bg-(--color-border)" />
-
-      <div className="flex flex-col gap-14">
-        {experience.map((entry, entryIndex) => (
-          <div key={entryIndex} className="relative pl-11">
-            <motion.span
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3 }}
-              className="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full border border-(--color-accent) bg-(--color-bg-elevated)"
-            >
-              <span className="h-2 w-2 rounded-full bg-(--color-accent)" />
-            </motion.span>
-
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-              <h3 className="font-display text-xl font-semibold text-(--color-text)">
-                {entry.role}
-              </h3>
-              <span className="font-mono text-xs text-(--color-cyan)">
-                {entry.duration}
-              </span>
+      <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border-soft" aria-hidden />
+      <div className="flex flex-col gap-10">
+        {experience.map((item, i) => (
+          <motion.div
+            key={`${item.company}-${item.start}`}
+            initial={{ opacity: 0, x: -8 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.35, delay: i * 0.05 }}
+            className="relative pl-8"
+          >
+            <span
+              className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full border-2"
+              style={{
+                borderColor: item.current ? "var(--accent)" : "var(--border)",
+                background: item.current ? "var(--accent)" : "var(--bg)",
+              }}
+              aria-hidden
+            />
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <h3 className="text-base font-medium text-text">{item.role}</h3>
+              {item.current && <Badge className="text-accent border-accent/30">Current</Badge>}
             </div>
-            <p className="mt-2 max-w-2xl text-sm text-(--color-text-muted)">
-              {entry.summary}
+            <p className="text-sm text-text-muted mt-0.5">
+              {item.company} · {item.location}
             </p>
-
-            <ul className="mt-6 flex flex-col gap-3">
-              {entry.responsibilities.map((item, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: -8 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.35, delay: i * 0.04 }}
-                  className="flex flex-col gap-2 rounded-lg border border-(--color-border) bg-(--color-surface) px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
-                >
-                  <span className="text-sm text-(--color-text)">{item.text}</span>
-                  <span className="flex flex-wrap gap-1.5">
-                    {item.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-md border border-(--color-border-strong) px-2 py-0.5 font-mono text-[11px] text-(--color-text-muted)"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
-          </div>
+            <p className="font-mono-tag text-xs text-text-faint mt-1">
+              {item.start} — {item.end}
+            </p>
+            <p className="mt-3 text-sm text-text-muted leading-relaxed max-w-2xl">{item.summary}</p>
+            {item.highlights.length > 0 && (
+              <ul className="mt-3 space-y-1.5">
+                {item.highlights.map((h) => (
+                  <li key={h} className="text-sm text-text-muted flex gap-2">
+                    <span className="text-accent mt-1.5 h-1 w-1 rounded-full bg-accent shrink-0" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </motion.div>
         ))}
       </div>
     </div>

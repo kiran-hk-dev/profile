@@ -1,0 +1,76 @@
+import type { Metadata } from "next";
+import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PipelineDiagram } from "@/components/ui/PipelineDiagram";
+import { Badge } from "@/components/ui/Badge";
+
+export const metadata: Metadata = {
+  title: "DevOps",
+  description: "How Kiran H K takes applications from code to production using Docker, Kubernetes, Jenkins, GitLab CI/CD, and AWS.",
+};
+
+const pipeline = [
+  { label: "Code", detail: "Git" },
+  { label: "GitHub / GitLab", detail: "Version control" },
+  { label: "Jenkins / GitLab CI", detail: "Build & automate" },
+  { label: "Test", detail: "Validation" },
+  { label: "Security Scan", detail: "Container image scanning" },
+  { label: "Docker Build", detail: "Containerize" },
+  { label: "Kubernetes", detail: "Orchestrate & deploy" },
+  { label: "AWS / DigitalOcean", detail: "Cloud infrastructure" },
+  { label: "Prometheus / Grafana", detail: "Monitor" },
+];
+
+const technologies = [
+  "Git", "Jenkins", "GitLab CI/CD", "Docker", "Docker Compose", "Kubernetes",
+  "AWS (EC2, S3, IAM, ECS, EKS)", "DigitalOcean", "Prometheus", "Grafana",
+  "Container Image Scanning", "Bash", "Python", "Groovy", "YAML",
+];
+
+export default function DevOpsPage() {
+  return (
+    <Container className="py-20 sm:py-28">
+      <SectionHeading title="From Code to Production" description="The pipeline I build and operate to get an application from a commit to a running, monitored service." />
+
+      <div className="rounded-2xl border border-border-soft bg-bg-elevated/50 p-6 sm:p-8">
+        <PipelineDiagram nodes={pipeline} direction="horizontal" />
+      </div>
+
+      <div className="mt-16">
+        <h2 className="font-display text-xl text-text mb-5">Practice Areas</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="rounded-xl border border-border-soft bg-bg-elevated p-5">
+            <h3 className="text-sm font-medium text-text">CI/CD Automation</h3>
+            <p className="mt-2 text-sm text-text-muted leading-relaxed">
+              Built Jenkins and GitLab CI/CD pipelines to automate builds, testing, and deployments — reducing manual
+              deployment steps and deployment errors.
+            </p>
+          </div>
+          <div className="rounded-xl border border-border-soft bg-bg-elevated p-5">
+            <h3 className="text-sm font-medium text-text">Container Orchestration</h3>
+            <p className="mt-2 text-sm text-text-muted leading-relaxed">
+              Containerized microservices with Docker and operated Kubernetes clusters for scaling, rollbacks, and
+              zero-downtime deployments.
+            </p>
+          </div>
+          <div className="rounded-xl border border-border-soft bg-bg-elevated p-5">
+            <h3 className="text-sm font-medium text-text">Monitoring & Security</h3>
+            <p className="mt-2 text-sm text-text-muted leading-relaxed">
+              Set up Prometheus and Grafana for observability, and ran container image scanning to catch
+              vulnerabilities before deployment.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-16">
+        <h2 className="font-display text-xl text-text mb-5">Technologies</h2>
+        <div className="flex flex-wrap gap-2">
+          {technologies.map((t) => (
+            <Badge key={t}>{t}</Badge>
+          ))}
+        </div>
+      </div>
+    </Container>
+  );
+}

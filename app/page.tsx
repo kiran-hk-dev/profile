@@ -1,27 +1,27 @@
-import { AboutPreview } from "@/components/home/AboutPreview";
-import { ContactCTA } from "@/components/home/ContactCTA";
-import { DevOpsPipeline } from "@/components/home/DevOpsPipeline";
-import { ExperiencePreview } from "@/components/home/ExperiencePreview";
-import { FeaturedProjects } from "@/components/home/FeaturedProjects";
-import { GithubSection } from "@/components/home/GithubSection";
 import { Hero } from "@/components/home/Hero";
-import { ResumeSection } from "@/components/home/ResumeSection";
-import { SkillsPreview } from "@/components/home/SkillsPreview";
+import { Stats } from "@/components/home/Stats";
+import { AboutPreview } from "@/components/home/AboutPreview";
+import { ExperiencePreview } from "@/components/home/ExperiencePreview";
+import { SkillsGrid } from "@/components/home/SkillsGrid";
+import { FullStackArchitecture } from "@/components/home/FullStackArchitecture";
+import { FeaturedProjects } from "@/components/home/FeaturedProjects";
+import { DevOpsPipeline } from "@/components/home/DevOpsPipeline";
+import { WhatIBring } from "@/components/home/WhatIBring";
+import { ContactCTA } from "@/components/home/ContactCTA";
 
-export default function HomePage() {
+export default function Home() {
   return (
     <>
       <Hero />
-      <div className="divide-y divide-(--color-border)">
-        <AboutPreview />
-        <SkillsPreview />
-        <ExperiencePreview />
-        <FeaturedProjects />
-        <DevOpsPipeline />
-        <GithubSection />
-        <ResumeSection />
-        <ContactCTA />
-      </div>
+      <Stats />
+      <AboutPreview />
+      <ExperiencePreview />
+      <SkillsGrid />
+      <FullStackArchitecture />
+      <FeaturedProjects />
+      <DevOpsPipeline />
+      <WhatIBring />
+      <ContactCTA />
     </>
   );
 }

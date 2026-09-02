@@ -1,50 +1,31 @@
-import { FadeIn } from "@/components/animations/FadeIn";
-import { AnimatedStat } from "@/components/home/AnimatedStat";
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { profile, stats } from "@/data/profile";
-import type { Metadata } from "next";
+import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${profile.name}, a ${profile.title} based in ${profile.location}.`,
+  description: "About Kiran H K — DevOps Engineer and Full Stack Developer based in Bengaluru, India.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="py-32 sm:py-40">
-      <Container>
-        <SectionHeading
-          title="About"
-          description="A closer look at how I approach DevOps work."
-        />
-
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1fr]">
-          <FadeIn className="flex flex-col gap-5">
-            <p className="max-w-xl text-lg leading-relaxed text-(--color-text-muted)">
-              {profile.summary}
-            </p>
-            <p className="max-w-xl text-base leading-relaxed text-(--color-text-muted)">
-              DevOps Engineer with 4.8+ years of hands-on experience working
-              with modern cloud-native technologies. I specialize in
-              designing CI/CD pipelines, containerizing applications,
-              managing Kubernetes workloads, automating infrastructure,
-              implementing monitoring solutions, and improving deployment
-              reliability.
-            </p>
-            <p className="max-w-xl text-base leading-relaxed text-(--color-text-muted)">
-              I&rsquo;m based in {profile.location}, and open to opportunities in{" "}
-              {profile.openTo.join(", ")} as well.
-            </p>
-          </FadeIn>
-
-          <div className="grid grid-cols-2 gap-4">
-            {stats.map((stat) => (
-              <AnimatedStat key={stat.label} value={stat.value} label={stat.label} />
-            ))}
-          </div>
+    <Container className="py-20 sm:py-28">
+      <SectionHeading title="About Me" />
+      <div className="max-w-2xl">
+        <p className="text-text-muted leading-relaxed text-lg">{profile.summary}</p>
+        <p className="mt-6 text-text-muted leading-relaxed">
+          I work across both software development and DevOps, which lets me understand an application from the
+          development side and the infrastructure side at once. That means building the React interface, writing the
+          Node.js API behind it, modeling the data in MongoDB, and then containerizing, deploying, and monitoring the
+          whole thing in production.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm text-text-muted">
+          <span><span className="text-text-faint">Based in</span> {profile.location}</span>
+          <span><span className="text-text-faint">Open to</span> {profile.openTo}</span>
+          <span><span className="text-text-faint">Experience</span> {profile.experience}</span>
         </div>
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 }

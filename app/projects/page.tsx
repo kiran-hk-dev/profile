@@ -1,25 +1,23 @@
-import { ProjectGrid } from "@/components/projects/ProjectGrid";
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ProjectCard } from "@/components/projects/ProjectCard";
 import { projects } from "@/data/projects";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description:
-    "Platforms and infrastructure projects built by Kiran H K, covering CI/CD, Kubernetes, monitoring, and cloud-native delivery.",
+  description: "Full stack and DevOps projects built by Kiran H K, including MyChits (ChitXpert) and Retail Billing Software.",
 };
 
 export default function ProjectsPage() {
   return (
-    <div className="py-32 sm:py-40">
-      <Container>
-        <SectionHeading
-          title="Projects"
-          description="Platforms I've built and the infrastructure work behind shipping them."
-        />
-        <ProjectGrid projects={projects} />
-      </Container>
-    </div>
+    <Container className="py-20 sm:py-28">
+      <SectionHeading title="Projects" description="Real projects, real technology, real outcomes." />
+      <div className="grid md:grid-cols-2 gap-6">
+        {projects.map((p, i) => (
+          <ProjectCard project={p} key={p.slug} index={i} />
+        ))}
+      </div>
+    </Container>
   );
 }

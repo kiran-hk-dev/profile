@@ -1,40 +1,19 @@
-import { Repository } from "@/types";
+// Optional helper if you later want to pull repositories dynamically from
+// the GitHub REST API instead of maintaining data/repositories.ts by hand.
+// Not called anywhere by default — wire it into a Server Component if needed.
 
-const GITHUB_USERNAME =
-  process.env.NEXT_PUBLIC_GITHUB_USERNAME || "kiranhk";
+export interface GitHubRepo {
+  name: string;
+  description: string | null;
+  html_url: string;
+  language: string | null;
+  stargazers_count: number;
+}
 
-/**
- * Server-side fetch of public repositories for the configured GitHub user.
- * Falls back to null (rather than throwing) so the UI can gracefully show
- * the static repository configuration instead when the API is unreachable
- * or rate-limited.
- */
-export async function getFeaturedRepositories(): Promise<Repository[] | null> {
-  try {
-    const res = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`,
-      {
-        headers: { Accept: "application/vnd.github+json" },
-        next: { revalidate: 3600 },
-      }
-    );
-
-    if (!res.ok) return null;
-
-    const data = await res.json();
-    if (!Array.isArray(data)) return null;
-
-    return data
-      .filter((repo) => !repo.fork)
-      .slice(0, 6)
-      .map((repo) => ({
-        name: repo.name,
-        description: repo.description || "No description provided.",
-        url: repo.html_url,
-        language: repo.language || "N/A",
-        topics: repo.topics || [],
-      }));
-  } catch {
-    return null;
-  }
+export async function fetchGitHubRepos(username: string): Promise<GitHubRepo[]> {
+  const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`, {
+    next: { revalidate: 3600 },
+  });
+  if (!res.ok) return [];
+  return res.json();
 }

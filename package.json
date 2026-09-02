@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "kiran-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,13 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "framer-motion": "^13.1.1",
-    "lucide-react": "^1.38.0",
+    "lucide-react": "^1.39.0",
     "next": "16.3.4",
     "next-themes": "^0.4.6",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "react-hook-form": "^7.87.0"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

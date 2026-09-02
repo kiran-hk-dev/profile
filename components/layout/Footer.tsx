@@ -1,70 +1,56 @@
-import { navItems, profile } from "@/data/profile";
 import Link from "next/link";
-import { GithubIcon } from "../icons/GithubIcon";
-import { LinkedinIcon } from "../icons/LinkedinIcon";
-import { Container } from "../ui/Container";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
+import { profile } from "@/data/profile";
+import { Container } from "@/components/ui/Container";
+
+const links = [
+  { href: "/#about", label: "About" },
+  { href: "/experience", label: "Experience" },
+  { href: "/projects", label: "Projects" },
+  { href: "/devops", label: "DevOps" },
+  { href: "/contact", label: "Contact" },
+];
 
 export function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="border-t border-(--color-border) bg-(--color-bg-elevated)">
-      <Container className="flex flex-col gap-10 py-14">
-        <div className="flex flex-col justify-between gap-8 sm:flex-row">
+    <footer className="border-t border-border-soft mt-24">
+      <Container className="py-12">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
           <div>
-            <p className="font-display text-lg font-semibold text-(--color-text)">
-              {profile.name}
-            </p>
-            <p className="text-sm text-(--color-text-muted)">{profile.title}</p>
-            <p className="mt-3 font-mono text-xs text-(--color-cyan)">
-              Automate. Deploy. Monitor. Improve.
-            </p>
+            <p className="font-display text-lg text-text">{profile.name}</p>
+            <p className="text-sm text-text-muted mt-1">{profile.title}</p>
+            <p className="font-mono-tag text-xs text-accent mt-3">Build. Automate. Deploy. Monitor.</p>
           </div>
 
-          <nav aria-label="Footer navigation">
-            <ul className="flex flex-wrap gap-x-6 gap-y-2">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-(--color-text-muted) transition-colors hover:text-(--color-text)"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
+          <div className="flex flex-wrap gap-x-10 gap-y-6">
+            <div className="flex flex-col gap-2">
+              <span className="text-xs text-text-faint uppercase tracking-wide font-mono-tag">Navigate</span>
+              {links.map((l) => (
+                <Link key={l.href} href={l.href} className="text-sm text-text-muted hover:text-text transition-colors">
+                  {l.label}
+                </Link>
               ))}
-            </ul>
-          </nav>
+            </div>
 
-          <div className="flex items-start gap-4">
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub profile"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-(--color-border-strong) text-(--color-text-muted) transition-colors hover:border-(--color-accent) hover:text-(--color-accent)"
-            >
-              <GithubIcon size={16} />
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn profile"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-(--color-border-strong) text-(--color-text-muted) transition-colors hover:border-(--color-accent) hover:text-(--color-accent)"
-            >
-              <LinkedinIcon size={16} />
-            </a>
+            <div className="flex flex-col gap-2">
+              <span className="text-xs text-text-faint uppercase tracking-wide font-mono-tag">Connect</span>
+              <a href={profile.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-text-muted hover:text-text transition-colors">
+                <GithubIcon size={14} /> GitHub
+              </a>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-text-muted hover:text-text transition-colors">
+                <LinkedinIcon size={14} /> LinkedIn
+              </a>
+              <a href={`mailto:${profile.email}`} className="flex items-center gap-2 text-sm text-text-muted hover:text-text transition-colors">
+                <Mail size={14} /> Email
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col-reverse items-start justify-between gap-3 border-t border-(--color-border) pt-6 sm:flex-row sm:items-center">
-          <p className="text-xs text-(--color-text-faint)">
-            © {year} {profile.name}. All rights reserved.
-          </p>
-          <p className="font-mono text-xs text-(--color-text-faint)">
-            Built with Next.js &amp; Tailwind CSS
-          </p>
+        <div className="mt-10 pt-6 border-t border-border-soft flex flex-col sm:flex-row justify-between gap-2 text-xs text-text-faint">
+          <span>© 2026 {profile.name}. All rights reserved.</span>
+          <span>{profile.location}</span>
         </div>
       </Container>
     </footer>

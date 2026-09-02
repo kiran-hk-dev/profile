@@ -1,66 +1,40 @@
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ReactNode } from "react";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
-
-interface BaseProps {
+type ButtonProps = {
   children: ReactNode;
-  variant?: ButtonVariant;
+  href?: string;
+  variant?: "primary" | "secondary" | "ghost";
   className?: string;
+  target?: string;
+  rel?: string;
   icon?: ReactNode;
-}
-
-const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    "bg-(--color-accent) text-white hover:brightness-110 border border-transparent",
-  secondary:
-    "bg-transparent text-(--color-text) border border-(--color-border-strong) hover:border-(--color-accent) hover:text-(--color-accent)",
-  ghost:
-    "bg-transparent text-(--color-text-muted) hover:text-(--color-text) border border-transparent",
+  onClick?: () => void;
 };
 
-const base =
-  "inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-(--color-accent)";
-
-export function Button({
-  children,
-  variant = "primary",
-  className,
-  icon,
-  href,
-  external,
-  onClick,
-  type = "button",
-}: BaseProps & {
-  href?: string;
-  external?: boolean;
-  onClick?: () => void;
-  type?: "button" | "submit";
-}) {
-  const classes = cn(base, variantClasses[variant], className);
+export function Button({ children, href, variant = "secondary", className, target, rel, icon, onClick }: ButtonProps) {
+  const styles = cn(
+    "inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors duration-150",
+    variant === "primary" && "bg-accent text-bg hover:bg-accent/90",
+    variant === "secondary" && "border border-border bg-bg-elevated text-text hover:border-accent/50",
+    variant === "ghost" && "text-text-muted hover:text-text",
+    className
+  );
 
   if (href) {
-    if (external) {
-      return (
-        <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
-          {children}
-          {icon}
-        </a>
-      );
-    }
     return (
-      <Link href={href} className={classes}>
-        {children}
+      <Link href={href} className={styles} target={target} rel={rel}>
         {icon}
+        {children}
       </Link>
     );
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
-      {children}
+    <button onClick={onClick} className={styles}>
       {icon}
+      {children}
     </button>
   );
 }

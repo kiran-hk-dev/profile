@@ -1,32 +1,23 @@
-import { NavItem, Profile } from "@/types";
+import { Profile } from "@/types";
 
 export const profile: Profile = {
   name: "Kiran H K",
-  title: "DevOps Engineer and MERN Full Stack Developer",
-  experience: "4.8+ Years Experience",
+  title: "DevOps Engineer & Full Stack Developer",
+  experience: "5+ Years",
   location: "Bengaluru, Karnataka, India",
-  openTo: ["Hyderabad"],
-  summary:
-    "Highly motivated and results-driven DevOps Engineer with 4.8+ years of experience in building, automating, deploying, and maintaining scalable applications and cloud infrastructure. Experienced in CI/CD, Docker, Kubernetes, AWS, DigitalOcean, Helm, Jenkins, GitLab, ArgoCD, monitoring, security automation, and cloud-native technologies.",
+  openTo: "Bengaluru / Hyderabad",
   email: "kiranhk96@gmail.com",
-  github: "https://github.com/kiranhk",
-  linkedin: "https://linkedin.com/in/kiranhk",
-  resumePath: "/resume/Kiran-HK-DevOps-Engineer.pdf",
+  phone: "+91 9483426973",
+  linkedin: "https://linkedin.com/in/Kiran-HK",
+  github: "https://github.com/kiranmychits2025",
+  githubUsername: "kiranmychits2025",
+  summary:
+    "DevOps Engineer and Full Stack Developer with 5+ years of experience designing and implementing scalable cloud infrastructure and web applications. I automate CI/CD pipelines, run containerized workloads on Kubernetes, and build full-stack applications with React, Node.js, and MongoDB — working across the stack from frontend interfaces to the infrastructure that runs them in production.",
 };
 
-export const navItems: NavItem[] = [
-  { label: "Home", href: "/#home" },
-  { label: "About", href: "/#about" },
-  { label: "Skills", href: "/#skills" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Projects", href: "/#projects" },
-  { label: "DevOps", href: "/#devops" },
-  { label: "Contact", href: "/#contact" },
-];
-
-export const stats = [
-  { value: "4.8+", label: "Years experience" },
-  { value: "10+", label: "DevOps technologies" },
-  { value: "Multiple", label: "Production deployments" },
-  { value: "Cloud Native", label: "Infrastructure" },
-];
+export const heroCta = {
+  headline: "I Build Applications And The Infrastructure That Runs Them.",
+  subheadline: "Full Stack Development. Cloud Infrastructure. DevOps Automation.",
+  supporting:
+    "I design and deploy web applications end to end — building React front ends and Node.js APIs, then containerizing, automating, and operating them on Kubernetes and cloud infrastructure.",
+};

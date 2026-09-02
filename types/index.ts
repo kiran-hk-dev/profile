@@ -3,68 +3,71 @@ export interface Profile {
   title: string;
   experience: string;
   location: string;
-  openTo: string[];
-  summary: string;
+  openTo: string;
   email: string;
-  github: string;
+  phone: string;
   linkedin: string;
-  resumePath: string;
-}
-
-export interface NavItem {
-  label: string;
-  href: string;
+  github: string;
+  githubUsername: string;
+  summary: string;
 }
 
 export interface SkillItem {
   name: string;
-  usage: "Daily" | "Regular" | "Working knowledge";
+  description: string;
 }
 
 export interface SkillCategory {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
+  category: string;
   items: SkillItem[];
 }
 
-export interface ExperienceEntry {
+export interface ExperienceItem {
   role: string;
-  duration: string;
+  company: string;
+  location: string;
+  start: string;
+  end: string;
+  current: boolean;
+  type: "full-time" | "freelance";
   summary: string;
-  responsibilities: {
-    text: string;
-    tech: string[];
-  }[];
+  highlights: string[];
+}
+
+export interface ProjectArchitectureStep {
+  label: string;
+  detail?: string;
 }
 
 export interface Project {
   slug: string;
   title: string;
+  subtitle?: string;
   category: string;
+  duration: string;
   description: string;
-  longDescription: string;
-  technologies: string[];
-  features: string[];
-  devopsContributions: string[];
-  architecture: string[];
+  role: string;
+  technologies: {
+    frontend?: string[];
+    backend?: string[];
+    database?: string[];
+    cloud?: string[];
+    devops?: string[];
+    monitoring?: string[];
+    security?: string[];
+  };
+  features: { title: string; items: string[] }[];
+  contributions: { title: string; items: string[] }[];
+  architecture: ProjectArchitectureStep[];
+  kpis: string[];
   github?: string;
   liveDemo?: string;
   featured: boolean;
-}
-
-export interface PipelineStage {
-  id: string;
-  label: string;
-  description: string;
-  icon: string;
 }
 
 export interface Repository {
   name: string;
   description: string;
   url: string;
-  language: string;
-  topics: string[];
+  tech: string[];
 }

@@ -1,14 +1,21 @@
 "use client";
 
-import { navItems, profile } from "@/data/profile";
-import { cn } from "@/lib/cn";
-import { FileDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { GithubIcon } from "../icons/GithubIcon";
-import { LinkedinIcon } from "../icons/LinkedinIcon";
-import { ThemeToggle } from "../ThemeToggle";
-import { MobileMenu } from "./MobileMenu";
+import { FileText, Menu, X } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
+import { profile } from "@/data/profile";
+import { ThemeToggle } from "./ThemeToggle";
+import { cn } from "@/lib/utils";
+
+const links = [
+  { href: "/#about", label: "About" },
+  { href: "/experience", label: "Experience" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/projects", label: "Projects" },
+  { href: "/devops", label: "DevOps" },
+  { href: "/contact", label: "Contact" },
+];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,89 +24,65 @@ export function Navbar() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "glass border-b border-(--color-border)"
-          : "border-b border-transparent"
+        "sticky top-0 z-50 transition-all duration-200",
+        scrolled ? "bg-bg/85 backdrop-blur-md border-b border-border-soft" : "bg-transparent border-b border-transparent"
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <Link
-          href="/#home"
-          className="font-display text-sm font-semibold tracking-tight text-(--color-text)"
-        >
-          KIRAN<span className="text-(--color-accent)">.</span>HK
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 sm:px-8 py-4">
+        <Link href="/" className="font-display text-lg font-medium tracking-tight text-text" onClick={() => setOpen(false)}>
+          KHK<span className="text-accent">.</span>
         </Link>
 
-        <ul className="hidden items-center gap-7 lg:flex">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="text-sm text-(--color-text-muted) transition-colors hover:text-(--color-text)"
-              >
-                {item.label}
-              </Link>
-            </li>
+        <div className="hidden md:flex items-center gap-7">
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} className="text-sm text-text-muted hover:text-text transition-colors">
+              {l.label}
+            </Link>
           ))}
-        </ul>
+        </div>
 
-        <div className="hidden items-center gap-4 lg:flex">
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub profile"
-            className="text-(--color-text-muted) transition-colors hover:text-(--color-text)"
-          >
-            <GithubIcon size={17} />
+        <div className="hidden md:flex items-center gap-2">
+          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="flex h-9 w-9 items-center justify-center rounded-lg border border-border-soft text-text-muted hover:text-text hover:border-accent/40 transition-colors">
+            <GithubIcon size={16} />
           </a>
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn profile"
-            className="text-(--color-text-muted) transition-colors hover:text-(--color-text)"
-          >
-            <LinkedinIcon size={17} />
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="flex h-9 w-9 items-center justify-center rounded-lg border border-border-soft text-text-muted hover:text-text hover:border-accent/40 transition-colors">
+            <LinkedinIcon size={16} />
           </a>
-          <a
-            href={profile.resumePath}
-            download
-            className="flex items-center gap-1.5 text-sm text-(--color-text-muted) transition-colors hover:text-(--color-text)"
-          >
-            <FileDown size={15} />
-            Resume
+          <a href="/resume/Kiran-HK-Resume.pdf" target="_blank" rel="noreferrer" aria-label="Resume" className="flex h-9 w-9 items-center justify-center rounded-lg border border-border-soft text-text-muted hover:text-text hover:border-accent/40 transition-colors">
+            <FileText size={16} />
           </a>
           <ThemeToggle />
         </div>
 
-        <button
-          type="button"
-          className="flex items-center justify-center text-(--color-text) lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-        >
+        <button className="md:hidden text-text" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
 
-      <MobileMenu open={open} onClose={() => setOpen(false)} />
+      {open && (
+        <div className="md:hidden border-t border-border-soft bg-bg px-5 py-4">
+          <div className="flex flex-col gap-4">
+            {links.map((l) => (
+              <Link key={l.href} href={l.href} className="text-sm text-text-muted hover:text-text" onClick={() => setOpen(false)}>
+                {l.label}
+              </Link>
+            ))}
+            <div className="flex items-center gap-3 pt-2 border-t border-border-soft mt-1">
+              <a href={profile.github} target="_blank" rel="noreferrer" className="text-text-muted"><GithubIcon size={18} /></a>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="text-text-muted"><LinkedinIcon size={18} /></a>
+              <a href="/resume/Kiran-HK-Resume.pdf" target="_blank" rel="noreferrer" className="text-text-muted"><FileText size={18} /></a>
+              <div className="ml-auto"><ThemeToggle /></div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

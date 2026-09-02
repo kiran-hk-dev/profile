@@ -1,109 +1,90 @@
-import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { profile } from "@/data/profile";
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { profile } from "@/data/profile";
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
   variable: "--font-space-grotesk",
-  display: "swap",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
   variable: "--font-jetbrains-mono",
-  display: "swap",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
-const siteUrl = "https://kiranhk-devops.vercel.app";
-const title = "Kiran H K | DevOps Engineer | Cloud & Kubernetes";
-const description =
-  "Portfolio of Kiran H K, a DevOps Engineer specializing in AWS, Kubernetes, Docker, CI/CD, Jenkins, GitLab, Helm, ArgoCD, monitoring and cloud-native infrastructure.";
+const siteUrl = "https://kiran-hk-portfolio.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: title,
+    default: "Kiran H K | DevOps Engineer & Full Stack Developer",
     template: "%s | Kiran H K",
   },
-  description,
+  description:
+    "Portfolio of Kiran H K, a DevOps Engineer and Full Stack Developer with 5+ years of experience in React, Node.js, MongoDB, Docker, Kubernetes, AWS, CI/CD, and cloud infrastructure.",
   keywords: [
+    "Kiran H K",
     "DevOps Engineer",
+    "Full Stack Developer",
+    "React Developer",
+    "Node.js Developer",
     "Kubernetes",
     "AWS",
-    "Docker",
-    "CI/CD",
-    "Jenkins",
-    "GitLab",
-    "Helm",
-    "ArgoCD",
-    "Site Reliability Engineer",
-    "Cloud Engineer",
+    "Bengaluru",
   ],
   authors: [{ name: profile.name }],
-  creator: profile.name,
   openGraph: {
-    type: "website",
+    title: "Kiran H K | DevOps Engineer & Full Stack Developer",
+    description:
+      "5+ years of experience building web applications and cloud infrastructure — React, Node.js, MongoDB, Docker, Kubernetes, AWS, and CI/CD.",
     url: siteUrl,
-    title,
-    description,
-    siteName: `${profile.name} — Portfolio`,
-    images: [{ url: "/images/og/og-image.png", width: 1200, height: 630, alt: title }],
+    siteName: "Kiran H K Portfolio",
+    locale: "en_IN",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
-    images: ["/images/og/og-image.png"],
+    title: "Kiran H K | DevOps Engineer & Full Stack Developer",
+    description: "5+ years building web applications and cloud infrastructure.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  icons: {
-    icon: "/icons/favicon.svg",
-  },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: profile.name,
-  jobTitle: profile.title,
-  description: profile.summary,
-  url: siteUrl,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Bengaluru",
-    addressRegion: "Karnataka",
-    addressCountry: "IN",
-  },
-  sameAs: [profile.github, profile.linkedin],
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    jobTitle: profile.title,
+    email: profile.email,
+    telephone: profile.phone,
+    address: { "@type": "PostalAddress", addressLocality: "Bengaluru", addressRegion: "Karnataka", addressCountry: "IN" },
+    url: siteUrl,
+    sameAs: [profile.github, profile.linkedin],
+  };
+
   return (
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <head>
+      <body className="min-h-full flex flex-col bg-bg text-text">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className="flex min-h-screen flex-col antialiased">
         <ThemeProvider>
           <Navbar />
           <main className="flex-1">{children}</main>

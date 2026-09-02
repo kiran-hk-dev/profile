@@ -1,101 +1,77 @@
 "use client";
 
-import { profile } from "@/data/profile";
 import { motion } from "framer-motion";
-import { ArrowRight, FileDown, MapPin } from "lucide-react";
-import Link from "next/link";
-import { Badge } from "../ui/Badge";
-import { Container } from "../ui/Container";
-import { TerminalVisual } from "./TerminalVisual";
+import { FileText, Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
+import { profile, heroCta } from "@/data/profile";
+import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { PipelineDiagram } from "@/components/ui/PipelineDiagram";
+
+const nodes = [
+  { label: "React Frontend", detail: "Application UI" },
+  { label: "REST API", detail: "Node.js / Express.js" },
+  { label: "MongoDB", detail: "Data layer" },
+  { label: "Docker", detail: "Containerization" },
+  { label: "CI/CD", detail: "Jenkins · GitLab" },
+  { label: "Kubernetes", detail: "Orchestration" },
+  { label: "AWS / DigitalOcean", detail: "Cloud infrastructure" },
+  { label: "Monitoring", detail: "Prometheus · Grafana" },
+];
 
 export function Hero() {
   return (
-    <section
-      id="home"
-      className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28"
-    >
-      <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,black,transparent)]" />
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-(--color-accent) opacity-[0.12] blur-[140px]" />
-
-      <Container className="relative grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
-        <div>
+    <section className="relative overflow-hidden bg-grid">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-bg/40 to-bg" />
+      <Container className="relative py-16 sm:py-24 lg:py-28">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-14 lg:gap-8 items-start">
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Badge dot>Available for DevOps opportunities</Badge>
-          </motion.div>
+            <span className="font-mono-tag text-sm text-accent">{profile.title}</span>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.08 }}
-            className="mt-6 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-(--color-text) sm:text-5xl lg:text-[3.4rem]"
-          >
-            Building reliable infrastructure.
-            <br />
-            <span className="text-gradient">Automating everything.</span>
-          </motion.h1>
+            <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-text text-balance leading-[1.08]">
+              {heroCta.headline}
+            </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.16 }}
-            className="mt-6 max-w-lg text-base leading-relaxed text-(--color-text-muted) sm:text-lg"
-          >
-            {profile.title} focused on cloud infrastructure, CI/CD automation,
-            containerization, Kubernetes, observability, and secure
-            deployments.
-          </motion.p>
+            <p className="mt-5 text-lg text-text-muted">{heroCta.subheadline}</p>
+            <p className="mt-4 max-w-xl text-text-muted leading-relaxed">{heroCta.supporting}</p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.24 }}
-            className="mt-4 flex items-center gap-2 text-sm text-(--color-text-faint)"
-          >
-            <MapPin size={14} />
-            {profile.location} · Open to {profile.openTo.join(", ")}
+            <div className="mt-8 flex items-baseline gap-3">
+              <span className="font-display text-4xl text-accent">{profile.experience}</span>
+              <span className="text-sm text-text-muted">Years Experience</span>
+            </div>
+
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Button href="/projects" variant="primary">View Projects</Button>
+              <Button href="/experience" variant="secondary">View Experience</Button>
+              <Button href="/resume/Kiran-HK-Resume.pdf" target="_blank" rel="noreferrer" variant="secondary" icon={<FileText size={15} />}>
+                Download Resume
+              </Button>
+              <Button href="/contact" variant="ghost">Contact Me</Button>
+            </div>
+
+            <div className="mt-8 flex items-center gap-4">
+              <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="text-text-muted hover:text-text transition-colors"><GithubIcon size={19} /></a>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-text-muted hover:text-text transition-colors"><LinkedinIcon size={19} /></a>
+              <a href={`mailto:${profile.email}`} aria-label="Email" className="text-text-muted hover:text-text transition-colors"><Mail size={19} /></a>
+            </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.32 }}
-            className="mt-9 flex flex-wrap items-center gap-3"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="relative"
           >
-            <Link
-              href="/#projects"
-              className="inline-flex items-center gap-2 rounded-lg bg-(--color-accent) px-5 py-2.5 text-sm font-medium text-white transition hover:brightness-110"
-            >
-              View projects
-              <ArrowRight size={15} />
-            </Link>
-            <a
-              href={profile.resumePath}
-              download
-              className="inline-flex items-center gap-2 rounded-lg border border-(--color-border-strong) px-5 py-2.5 text-sm font-medium text-(--color-text) transition hover:border-(--color-accent) hover:text-(--color-accent)"
-            >
-              <FileDown size={15} />
-              Download resume
-            </a>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-(--color-text-muted) transition hover:text-(--color-text)"
-            >
-              Contact me
-            </Link>
+            <div className="rounded-2xl border border-border-soft bg-bg-elevated/60 backdrop-blur-sm p-5 sm:p-6">
+              <p className="font-mono-tag text-xs text-text-faint mb-4">{"// application lifecycle"}</p>
+              <PipelineDiagram nodes={nodes} direction="vertical" />
+            </div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <TerminalVisual />
-        </motion.div>
       </Container>
     </section>
   );

@@ -1,28 +1,13 @@
-import { cn } from "@/lib/cn";
-import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
-export function Badge({
-  children,
-  className,
-  dot,
-}: {
-  children: ReactNode;
-  className?: string;
-  dot?: boolean;
-}) {
+export function Badge({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-(--color-border-strong) bg-(--color-surface) px-3.5 py-1.5 text-xs font-medium text-(--color-text-muted)",
+        "inline-flex items-center rounded-md border border-border-soft bg-bg-elevated px-2.5 py-1 text-xs text-text-muted font-mono-tag",
         className
       )}
     >
-      {dot && (
-        <span className="relative flex h-1.5 w-1.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-(--color-cyan) opacity-75" />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-(--color-cyan)" />
-        </span>
-      )}
       {children}
     </span>
   );
