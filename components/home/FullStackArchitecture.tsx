@@ -14,7 +14,7 @@ export function FullStackArchitecture() {
     <section>
       <Container className="py-20 sm:py-24">
         <SectionHeading
-          title="Full Stack Development"
+          title="Full Stack Developer"
           description="I've worked on both frontend and backend rather than only consuming existing APIs — building the UI, the API, and the data layer beneath it."
         />
         <div className="rounded-2xl border border-border-soft bg-bg-elevated/50 p-6 sm:p-8">

@@ -5,10 +5,10 @@ export const projects: Project[] = [
     slug: "mychits-chitxpert",
     title: "MyChits",
     subtitle: "ChitXpert",
-    category: "Full Stack + DevOps · FinTech",
-    duration: "April 2025 – Present",
+    category: "Full Stack + DevOps",
+    duration: "March 2025 – Present",
     description:
-      "MyChits (module: ChitXpert) is a fintech platform for managing chit-fund operations — customer enrolment, real-time payment reporting, and collection workflows — built and deployed end to end as a freelance engagement.",
+      "MyChits (module: ChitXpert) is a platform for managing chit-fund operations — customer enrolment, real-time payment reporting, and collection workflows — built and deployed end to end as a freelance engagement.",
     role: "DevOps Engineer & Full Stack Developer (Freelance)",
     technologies: {
       frontend: ["React", "React Hooks", "Tailwind CSS"],
@@ -78,15 +78,17 @@ export const projects: Project[] = [
   },
   {
     slug: "retail-billing-software",
-    title: "Retail Billing Software",
+    title: "Native minds Technology Pvt Ltd",
+    subtitle: "Retail Billing Software",
+
     category: "DevOps · Retail",
-    duration: "June 2022 – Present",
+    duration: "June 2022 – January 2025",
     description:
       "Retail billing platform run as containerized microservices on Kubernetes, built to scale through traffic spikes without downtime or performance loss.",
     role: "DevOps Engineer",
     technologies: {
       devops: ["Docker", "Kubernetes"],
-      cloud: ["AWS"],
+      cloud: ["AWS","Digital Ocean"],
       monitoring: ["Prometheus", "Grafana"],
     },
     features: [
