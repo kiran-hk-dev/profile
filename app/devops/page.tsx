@@ -1,7 +1,22 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
+import {
+  Code2,
+  GitBranch,
+  Workflow,
+  FlaskConical,
+  ShieldCheck,
+  Container,
+  FileCode2,
+  Rocket,
+  Cloud,
+  Activity,
+  Timer,
+  Gauge,
+  CheckCircle2,
+  Boxes,
+} from "lucide-react";
+import { Container as PageContainer } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PipelineDiagram } from "@/components/ui/PipelineDiagram";
 import { Badge } from "@/components/ui/Badge";
 
 export const metadata: Metadata = {
@@ -9,69 +24,144 @@ export const metadata: Metadata = {
   description: "How Kiran H K takes applications from code to production using Docker, Kubernetes, Jenkins, GitHub Actions, Terraform, ArgoCD, and AWS (EKS/ECR/VPC).",
 };
 
-const pipeline = [
-  { label: "Code", detail: "Git · TypeScript" },
-  { label: "GitHub / GitLab", detail: "Version control" },
-  { label: "Jenkins / GitHub Actions", detail: "Build & automate" },
-  { label: "Test", detail: "Validation" },
-  { label: "Security Scan", detail: "Trivy image scanning" },
-  { label: "Docker Build → ECR", detail: "Containerize" },
-  { label: "Terraform", detail: "IaC provision" },
-  { label: "Kubernetes (EKS) / ArgoCD", detail: "GitOps deploy" },
-  { label: "AWS (VPC/ALB/Route 53) · Vercel Edge", detail: "Cloud infrastructure" },
-  { label: "Prometheus / Grafana", detail: "Monitor" },
+const stats = [
+  { icon: Timer, metric: "30% faster", label: "deployments, 10% fewer errors" },
+  { icon: Gauge, metric: "99% uptime", label: "production Kubernetes clusters" },
+  { icon: Rocket, metric: "Zero-downtime", label: "rollouts through traffic spikes" },
+  { icon: ShieldCheck, metric: "Zero critical vulns", label: "shipped — scanned in-pipeline" },
 ];
 
-const technologies = [
-  "Git", "Jenkins", "GitHub Actions", "GitLab CI/CD", "ArgoCD", "Docker", "Docker Compose", "Kubernetes",
-  "Helm", "Terraform", "AWS (EC2, S3, IAM, ECS, EKS)", "AWS (VPC, ALB, Route 53, ECR)", "Vercel", "DigitalOcean", "Prometheus", "Grafana",
-  "Trivy / Container Image Scanning", "Bash", "Python", "Groovy", "YAML",
+const stages = [
+  { icon: Code2, phase: "Source", title: "Code", detail: "Git · TypeScript" },
+  { icon: GitBranch, phase: "Source", title: "GitHub / GitLab", detail: "Version control" },
+  { icon: Workflow, phase: "Build", title: "Jenkins / GitHub Actions", detail: "Build & automate" },
+  { icon: FlaskConical, phase: "Build", title: "Test", detail: "Validation" },
+  { icon: ShieldCheck, phase: "Secure", title: "Security Scan", detail: "Trivy image scanning" },
+  { icon: Container, phase: "Package", title: "Docker Build → ECR", detail: "Containerize" },
+  { icon: FileCode2, phase: "Provision", title: "Terraform", detail: "IaC provision" },
+  { icon: Rocket, phase: "Deploy", title: "Kubernetes (EKS) / ArgoCD", detail: "GitOps deploy" },
+  { icon: Cloud, phase: "Run", title: "AWS (VPC/ALB/Route 53) · Vercel Edge", detail: "Cloud infrastructure" },
+  { icon: Activity, phase: "Observe", title: "Prometheus / Grafana", detail: "Monitor" },
+];
+
+const practices = [
+  {
+    icon: Workflow,
+    title: "CI/CD & GitOps Automation",
+    body: "Built Jenkins, GitLab CI, and GitHub Actions pipelines plus Terraform-provisioned AWS and ArgoCD-style GitOps delivery — cutting deployment time by 30% and errors by 10%.",
+    chips: ["−30% deploy time", "−10% deploy errors"],
+  },
+  {
+    icon: Boxes,
+    title: "Container Orchestration",
+    body: "Containerized microservices with Docker and operated Kubernetes clusters for scaling, rollbacks, and zero-downtime deployments.",
+    chips: ["99% cluster uptime", "Zero-downtime rollouts"],
+  },
+  {
+    icon: Activity,
+    title: "Monitoring, Observability & Security",
+    body: "Set up Prometheus and Grafana for observability (−10% MTTR), with Trivy image scanning and access-control audits so zero critical vulnerabilities ship.",
+    chips: ["−10% MTTR", "Zero critical vulns"],
+  },
+];
+
+const techGroups: { group: string; items: string[] }[] = [
+  { group: "Source & CI/CD", items: ["Git", "Jenkins", "GitHub Actions", "GitLab CI/CD", "ArgoCD"] },
+  { group: "Containers & Orchestration", items: ["Docker", "Docker Compose", "Kubernetes", "Helm"] },
+  { group: "Cloud & IaC", items: ["AWS (EC2, S3, IAM, ECS, EKS)", "AWS (VPC, ALB, Route 53, ECR)", "Terraform", "Vercel", "DigitalOcean"] },
+  { group: "Observability & Security", items: ["Prometheus", "Grafana", "Trivy / Container Image Scanning"] },
+  { group: "Scripting & Config", items: ["Bash", "Python", "Groovy", "YAML"] },
 ];
 
 export default function DevOpsPage() {
   return (
-    <Container className="py-20 sm:py-28">
-      <SectionHeading title="From Code to Production" description="The pipeline I build and operate to get an application from a commit to a running, monitored service." />
+    <PageContainer className="py-20 sm:py-28">
+      <p className="font-mono-tag text-xs uppercase tracking-widest text-accent mb-4">
+        DevOps practice
+      </p>
+      <SectionHeading
+        title="From Code to Production"
+        description="The pipeline I build and operate to get an application from a commit to a running, monitored service."
+      />
 
-      <div className="rounded-2xl border border-border-soft bg-bg-elevated/50 p-6 sm:p-8">
-        <PipelineDiagram nodes={pipeline} direction="horizontal" />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {stats.map((s) => (
+          <div
+            key={s.metric}
+            className="rounded-2xl border border-border-soft bg-bg-elevated px-5 py-5"
+          >
+            <s.icon size={20} className="text-accent" />
+            <p className="mt-3 font-display text-xl font-semibold text-text">{s.metric}</p>
+            <p className="mt-1 text-[13px] text-text-muted leading-snug">{s.label}</p>
+          </div>
+        ))}
       </div>
 
-      <div className="mt-16">
-        <h2 className="font-display text-xl text-text mb-5">Practice Areas</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <div className="rounded-xl border border-border-soft bg-bg-elevated p-5">
-            <h3 className="text-sm font-medium text-text">CI/CD & GitOps Automation</h3>
-            <p className="mt-2 text-sm text-text-muted leading-relaxed">
-              Built Jenkins, GitLab CI, and GitHub Actions pipelines plus Terraform-provisioned AWS and ArgoCD-style
-              GitOps delivery — cutting deployment time by 30% and errors by 10%.
-            </p>
+      <h2 className="font-display text-xl text-text mt-16 mb-2">Pipeline stages</h2>
+      <p className="text-sm text-text-muted mb-6">Ten stages, in flow order — grouped by phase from source to observe.</p>
+      <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {stages.map((stage, i) => (
+          <li
+            key={stage.title}
+            className="relative rounded-2xl border border-border-soft bg-bg-elevated p-5 hover:border-accent/40 transition-colors"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <span className="inline-flex items-center rounded-md border border-border-soft bg-bg-elevated-2 px-2 py-0.5 font-mono-tag text-[11px] uppercase tracking-widest text-text-muted">
+                {stage.phase}
+              </span>
+              <span className="font-mono-tag text-xs text-text-faint">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
+            <div className="mt-4 flex items-center gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent">
+                <stage.icon size={19} />
+              </span>
+              <div className="min-w-0">
+                <h3 className="text-[15px] font-semibold text-text leading-snug">{stage.title}</h3>
+                <p className="text-[13px] text-text-muted">{stage.detail}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <h2 className="font-display text-xl text-text mt-16 mb-6">Practice Areas</h2>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {practices.map((p) => (
+          <div key={p.title} className="rounded-2xl border border-border-soft bg-bg-elevated p-6">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
+              <p.icon size={19} />
+            </span>
+            <h3 className="mt-4 text-[15px] font-semibold text-text">{p.title}</h3>
+            <p className="mt-2 text-sm text-text-muted leading-relaxed">{p.body}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {p.chips.map((c) => (
+                <span
+                  key={c}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-accent/30 bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent"
+                >
+                  <CheckCircle2 size={12} /> {c}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="rounded-xl border border-border-soft bg-bg-elevated p-5">
-            <h3 className="text-sm font-medium text-text">Container Orchestration</h3>
-            <p className="mt-2 text-sm text-text-muted leading-relaxed">
-              Containerized microservices with Docker and operated Kubernetes clusters for scaling, rollbacks, and
-              zero-downtime deployments.
-            </p>
-          </div>
-          <div className="rounded-xl border border-border-soft bg-bg-elevated p-5">
-            <h3 className="text-sm font-medium text-text">Monitoring, Observability & Security</h3>
-            <p className="mt-2 text-sm text-text-muted leading-relaxed">
-              Set up Prometheus and Grafana for observability (−10% MTTR), with Trivy image scanning and
-              access-control audits so zero critical vulnerabilities ship.
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
 
-      <div className="mt-16">
-        <h2 className="font-display text-xl text-text mb-5">Technologies</h2>
-        <div className="flex flex-wrap gap-2">
-          {technologies.map((t) => (
-            <Badge key={t}>{t}</Badge>
-          ))}
-        </div>
+      <h2 className="font-display text-xl text-text mt-16 mb-6">Technologies</h2>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {techGroups.map((g) => (
+          <div key={g.group} className="rounded-2xl border border-border-soft bg-bg-elevated/60 p-5">
+            <h3 className="font-mono-tag text-xs uppercase tracking-widest text-accent">{g.group}</h3>
+            <div className="mt-3.5 flex flex-wrap gap-2">
+              {g.items.map((t) => (
+                <Badge key={t}>{t}</Badge>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-    </Container>
+    </PageContainer>
   );
 }
