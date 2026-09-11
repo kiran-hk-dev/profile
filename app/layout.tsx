@@ -32,14 +32,18 @@ export const metadata: Metadata = {
     template: "%s | Kiran H K",
   },
   description:
-    "Portfolio of Kiran H K, a DevOps Engineer and Full Stack Developer with 5+ years of experience in React, Node.js, MongoDB, Docker, Kubernetes, AWS, CI/CD, and cloud infrastructure.",
+    "Portfolio of Kiran H K, DevOps Engineer & MERN Full-Stack Developer (5+ years): React, Next.js, TypeScript, Node.js, MongoDB, Supabase, Docker, Kubernetes (EKS), Terraform, Jenkins, GitHub Actions, ArgoCD, AWS, CI/CD, and observability.",
   keywords: [
     "Kiran H K",
     "DevOps Engineer",
     "Full Stack Developer",
-    "React Developer",
-    "Node.js Developer",
+    "MERN",
+    "Next.js",
+    "TypeScript",
+    "Supabase",
+    "Terraform",
     "Kubernetes",
+    "EKS",
     "AWS",
     "Bengaluru",
   ],
@@ -47,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kiran H K | DevOps Engineer & Full Stack Developer",
     description:
-      "5+ years of experience building web applications and cloud infrastructure — React, Node.js, MongoDB, Docker, Kubernetes, AWS, and CI/CD.",
+      "5+ years shipping MERN + Next.js apps and cloud infrastructure — Docker, Kubernetes (EKS), Terraform, Jenkins/GitHub Actions, AWS, Supabase — with live builds.",
     url: siteUrl,
     siteName: "Kiran H K Portfolio",
     locale: "en_IN",

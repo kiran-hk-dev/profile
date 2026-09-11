@@ -12,12 +12,12 @@ export const profile: Profile = {
   github: "https://github.com/kiranmychits2025",
   githubUsername: "kiranmychits2025",
   summary:
-    "DevOps Engineer and Full Stack Developer with 5+ years of experience designing and implementing scalable cloud infrastructure and web applications. I automate CI/CD pipelines, run containerized workloads on Kubernetes, and build full-stack applications with React, Node.js, and MongoDB — working across the stack from frontend interfaces to the infrastructure that runs them in production.",
+    "DevOps Engineer and MERN Full-Stack Developer with 5+ years turning infrastructure and application work into measurable business outcomes: 30% faster deployments, 99% Kubernetes uptime, 60% faster customer onboarding, and 97% reporting accuracy. Builds and ships production systems end-to-end — from Docker/Kubernetes/Jenkins pipelines on AWS to full-stack features in React, Next.js, Node.js, Express.js, and MongoDB — for IT product and services teams.",
 };
 
 export const heroCta = {
   headline: "I Build Applications And The Infrastructure That Runs Them.",
-  subheadline: "Full Stack Development. Cloud Infrastructure. DevOps Automation.",
+  subheadline: "MERN + Next.js Full-Stack. AWS Cloud. DevOps & GitOps Automation.",
   supporting:
-    "I design and deploy web applications end to end — building React front ends and Node.js APIs, then containerizing, automating, and operating them on Kubernetes and cloud infrastructure.",
+    "I design and deploy web applications end to end — building React/Next.js front ends and Node.js APIs, then containerizing with Docker, automating with Jenkins/GitHub Actions/Terraform, and operating them on Kubernetes (EKS) with Prometheus/Grafana observability.",
 };

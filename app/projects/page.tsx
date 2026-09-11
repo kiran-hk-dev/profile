@@ -6,7 +6,7 @@ import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Full stack and DevOps projects built by Kiran H K, including MyChits (ChitXpert) and Retail Billing Software.",
+  description: "Full stack and DevOps projects by Kiran H K: MyChits (ChitXpert), Retail Billing, Developer Portfolio, Learn With Kiran, Hotel Admin Suite + Android app, and Train With Kiran Academy — all live.",
 };
 
 export default function ProjectsPage() {

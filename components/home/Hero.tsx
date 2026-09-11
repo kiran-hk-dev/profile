@@ -9,13 +9,14 @@ import { Button } from "@/components/ui/Button";
 import { PipelineDiagram } from "@/components/ui/PipelineDiagram";
 
 const nodes = [
-  { label: "React Frontend", detail: "Application UI" },
+  { label: "Next.js / React Frontend", detail: "App Router · Vercel" },
   { label: "REST API", detail: "Node.js / Express.js" },
-  { label: "MongoDB", detail: "Data layer" },
-  { label: "Docker", detail: "Containerization" },
-  { label: "CI/CD", detail: "Jenkins · GitLab" },
-  { label: "Kubernetes", detail: "Orchestration" },
-  { label: "AWS / DigitalOcean", detail: "Cloud infrastructure" },
+  { label: "MongoDB / Supabase", detail: "Data + realtime layer" },
+  { label: "Docker → ECR", detail: "Containerization" },
+  { label: "CI/CD", detail: "Jenkins · GitHub Actions · GitLab" },
+  { label: "Terraform", detail: "Infrastructure as Code" },
+  { label: "Kubernetes (EKS) / ArgoCD", detail: "GitOps orchestration" },
+  { label: "AWS (VPC/ALB/Route 53)", detail: "Cloud infrastructure" },
   { label: "Monitoring", detail: "Prometheus · Grafana" },
 ];
 

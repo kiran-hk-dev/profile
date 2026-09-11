@@ -6,25 +6,26 @@ import { Badge } from "@/components/ui/Badge";
 
 export const metadata: Metadata = {
   title: "DevOps",
-  description: "How Kiran H K takes applications from code to production using Docker, Kubernetes, Jenkins, GitLab CI/CD, and AWS.",
+  description: "How Kiran H K takes applications from code to production using Docker, Kubernetes, Jenkins, GitHub Actions, Terraform, ArgoCD, and AWS (EKS/ECR/VPC).",
 };
 
 const pipeline = [
-  { label: "Code", detail: "Git" },
+  { label: "Code", detail: "Git · TypeScript" },
   { label: "GitHub / GitLab", detail: "Version control" },
-  { label: "Jenkins / GitLab CI", detail: "Build & automate" },
+  { label: "Jenkins / GitHub Actions", detail: "Build & automate" },
   { label: "Test", detail: "Validation" },
-  { label: "Security Scan", detail: "Container image scanning" },
-  { label: "Docker Build", detail: "Containerize" },
-  { label: "Kubernetes", detail: "Orchestrate & deploy" },
-  { label: "AWS / DigitalOcean", detail: "Cloud infrastructure" },
+  { label: "Security Scan", detail: "Trivy image scanning" },
+  { label: "Docker Build → ECR", detail: "Containerize" },
+  { label: "Terraform", detail: "IaC provision" },
+  { label: "Kubernetes (EKS) / ArgoCD", detail: "GitOps deploy" },
+  { label: "AWS (VPC/ALB/Route 53) · Vercel Edge", detail: "Cloud infrastructure" },
   { label: "Prometheus / Grafana", detail: "Monitor" },
 ];
 
 const technologies = [
-  "Git", "Jenkins", "GitLab CI/CD", "Docker", "Docker Compose", "Kubernetes",
-  "AWS (EC2, S3, IAM, ECS, EKS)", "DigitalOcean", "Prometheus", "Grafana",
-  "Container Image Scanning", "Bash", "Python", "Groovy", "YAML",
+  "Git", "Jenkins", "GitHub Actions", "GitLab CI/CD", "ArgoCD", "Docker", "Docker Compose", "Kubernetes",
+  "Helm", "Terraform", "AWS (EC2, S3, IAM, ECS, EKS)", "AWS (VPC, ALB, Route 53, ECR)", "Vercel", "DigitalOcean", "Prometheus", "Grafana",
+  "Trivy / Container Image Scanning", "Bash", "Python", "Groovy", "YAML",
 ];
 
 export default function DevOpsPage() {
@@ -40,10 +41,10 @@ export default function DevOpsPage() {
         <h2 className="font-display text-xl text-text mb-5">Practice Areas</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <div className="rounded-xl border border-border-soft bg-bg-elevated p-5">
-            <h3 className="text-sm font-medium text-text">CI/CD Automation</h3>
+            <h3 className="text-sm font-medium text-text">CI/CD & GitOps Automation</h3>
             <p className="mt-2 text-sm text-text-muted leading-relaxed">
-              Built Jenkins and GitLab CI/CD pipelines to automate builds, testing, and deployments — reducing manual
-              deployment steps and deployment errors.
+              Built Jenkins, GitLab CI, and GitHub Actions pipelines plus Terraform-provisioned AWS and ArgoCD-style
+              GitOps delivery — cutting deployment time by 30% and errors by 10%.
             </p>
           </div>
           <div className="rounded-xl border border-border-soft bg-bg-elevated p-5">
@@ -54,10 +55,10 @@ export default function DevOpsPage() {
             </p>
           </div>
           <div className="rounded-xl border border-border-soft bg-bg-elevated p-5">
-            <h3 className="text-sm font-medium text-text">Monitoring & Security</h3>
+            <h3 className="text-sm font-medium text-text">Monitoring, Observability & Security</h3>
             <p className="mt-2 text-sm text-text-muted leading-relaxed">
-              Set up Prometheus and Grafana for observability, and ran container image scanning to catch
-              vulnerabilities before deployment.
+              Set up Prometheus and Grafana for observability (−10% MTTR), with Trivy image scanning and
+              access-control audits so zero critical vulnerabilities ship.
             </p>
           </div>
         </div>

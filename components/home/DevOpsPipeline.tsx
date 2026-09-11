@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/Button";
 import { PipelineDiagram } from "@/components/ui/PipelineDiagram";
 
 const pipeline = [
-  { label: "Code", detail: "Git" },
-  { label: "CI/CD", detail: "Jenkins · GitLab" },
-  { label: "Security Scan", detail: "Image scanning" },
-  { label: "Docker Build", detail: "Containerize" },
-  { label: "Kubernetes", detail: "Deploy & orchestrate" },
-  { label: "AWS / DigitalOcean", detail: "Cloud infrastructure" },
+  { label: "Code", detail: "Git · TypeScript" },
+  { label: "CI/CD", detail: "Jenkins · GitHub Actions · GitLab" },
+  { label: "Security Scan", detail: "Trivy image scanning" },
+  { label: "Docker Build → ECR", detail: "Containerize" },
+  { label: "Terraform", detail: "IaC provision" },
+  { label: "Kubernetes (EKS) / ArgoCD", detail: "GitOps deploy" },
+  { label: "AWS (VPC/ALB/Route 53) · Vercel", detail: "Cloud + edge" },
   { label: "Prometheus / Grafana", detail: "Monitor" },
 ];
 

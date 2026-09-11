@@ -38,6 +38,31 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <p className="mt-6 text-text-muted leading-relaxed text-lg">{project.description}</p>
         <p className="mt-4 text-sm text-text-faint">Role: <span className="text-text-muted">{project.role}</span></p>
 
+        {(project.liveDemo || project.github) && (
+          <div className="mt-6 flex flex-wrap gap-3">
+            {project.liveDemo && (
+              <a
+                href={project.liveDemo}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-black hover:opacity-90"
+              >
+                Open Live Demo ↗
+              </a>
+            )}
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-border-soft px-4 py-2 text-sm text-text-muted hover:text-text"
+              >
+                View Source ↗
+              </a>
+            )}
+          </div>
+        )}
+
         {project.kpis.length > 0 && (
           <div className="mt-6 flex flex-wrap gap-3">
             {project.kpis.map((k) => (

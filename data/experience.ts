@@ -2,22 +2,20 @@ import { ExperienceItem } from "@/types";
 
 export const experience: ExperienceItem[] = [
   {
-    role: "DevOps Engineer & Full Stack Developer",
-    company: "MyChits (Freelance)",
+    role: "DevOps Engineer & Full-Stack Developer",
+    company: "ChitXpert · MyChits — Vijaya Vinayak Chitfunds Pvt. Ltd.",
     location: "Bengaluru, India",
     start: "April 2025",
     end: "Present",
     current: true,
     type: "freelance",
     summary:
-      "Working across the full stack on MyChits, a fintech platform, while owning its CI/CD pipelines, containerized deployments, and cloud infrastructure.",
+      "Direct engagement with a licensed financial-services company, building and running its ChitXpert/MyChits platform end-to-end — infrastructure and MERN application layer.",
     highlights: [
-      "Built customer enrolment workflows and real-time payment reporting screens with React",
-      "Developed backend APIs with Node.js and Express.js, backed by MongoDB",
-      "Integrated WhatsApp-based notifications into application workflows",
-      "Containerized services with Docker and deployed to Kubernetes",
-      "Automated build and deployment pipelines with Jenkins and GitLab CI/CD",
-      "Set up Prometheus and Grafana monitoring for the platform",
+      "Zero-downtime releases: 100% uptime through peak traffic spikes by containerizing Retail Billing microservices with Docker and orchestrating rollouts on Kubernetes",
+      "60% faster customer onboarding: cut enrolment processing time vs manual workflows with an end-to-end MERN enrolment module (React.js, Node.js, Express.js, MongoDB)",
+      "97% reporting accuracy: real-time payment-reporting engine with WhatsApp notification integration via REST APIs, verified by reconciliation audits",
+      "Fewer production API defects: authored and validated every REST endpoint in Postman before deployment, reducing QA ticket volume",
     ],
   },
   {
@@ -31,11 +29,11 @@ export const experience: ExperienceItem[] = [
     summary:
       "Continued as a freelance DevOps Engineer, automating CI/CD pipelines and maintaining Kubernetes infrastructure.",
     highlights: [
-      "Automated CI/CD pipelines using Jenkins",
-      "Maintained containerized microservices with Docker",
-      "Operated Kubernetes clusters for production workloads",
-      "Integrated Prometheus and Grafana for monitoring",
-      "Ran container image scanning to identify vulnerabilities before deployment",
+      "30% higher scalability: +30% load-test throughput and −10% image size by containerizing microservices with Docker and standardizing build images",
+      "99% cluster uptime for production workloads via Kubernetes clusters wired into the CI/CD pipeline",
+      "30% faster deployments and 10% fewer deployment errors via automated Jenkins CI/CD pipelines across dev, staging, and production",
+      "10% faster incident resolution with real-time Prometheus + Grafana monitoring and alerting",
+      "Zero critical vulnerabilities shipped: automated image scanning and access-control checks in the pipeline",
     ],
   },
   {
@@ -49,10 +47,10 @@ export const experience: ExperienceItem[] = [
     summary:
       "Started as a full-time DevOps Engineer, building CI/CD automation and container orchestration from the ground up.",
     highlights: [
-      "Automated CI/CD pipelines with Jenkins, reducing deployment time",
-      "Containerized microservices using Docker and orchestrated them with Kubernetes",
-      "Maintained Kubernetes clusters supporting the Retail Billing Software project",
-      "Used Git, GitLab, and Bitbucket for version control and team workflows",
+      "Automated CI/CD pipelines with Jenkins, cutting deployment time by 30%",
+      "Containerized microservices with Docker and orchestrated them with Kubernetes for +30% scalability",
+      "Maintained Kubernetes clusters (99% uptime) supporting the Retail Billing Software project",
+      "Used Git, GitHub, GitLab, and Bitbucket for version control and Agile team delivery",
     ],
   },
   {
