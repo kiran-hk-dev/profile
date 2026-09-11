@@ -7,7 +7,7 @@ import {
   ShieldCheck,
   Container,
   FileCode2,
-  Rocket,
+  Ship,
   Cloud,
   Activity,
   Timer,
@@ -20,14 +20,14 @@ import { Button } from "@/components/ui/Button";
 import { PipelineFlow } from "@/components/ui/PipelineFlow";
 
 const stages = [
-  { icon: Code2, title: "Code", detail: "Git · TypeScript" },
-  { icon: Workflow, title: "CI/CD", detail: "Jenkins · GitHub Actions · GitLab" },
-  { icon: ShieldCheck, title: "Security Scan", detail: "Trivy image scanning" },
-  { icon: Container, title: "Docker Build → ECR", detail: "Containerize" },
-  { icon: FileCode2, title: "Terraform", detail: "IaC provision" },
-  { icon: Rocket, title: "Kubernetes (EKS) / ArgoCD", detail: "GitOps deploy" },
-  { icon: Cloud, title: "AWS (VPC/ALB/Route 53) · Vercel", detail: "Cloud + edge" },
-  { icon: Activity, title: "Prometheus / Grafana", detail: "Monitor" },
+  { icon: Code2, title: "Code", detail: "Git · TypeScript", color: "#4f7dd9" },
+  { icon: Workflow, title: "CI/CD", detail: "Jenkins · GitHub Actions · GitLab", color: "#d97706" },
+  { icon: ShieldCheck, title: "Security Scan", detail: "Trivy image scanning", color: "#e11d48" },
+  { icon: Container, title: "Docker Build → ECR", detail: "Containerize", color: "#0284c7" },
+  { icon: FileCode2, title: "Terraform", detail: "IaC provision", color: "#7c3aed" },
+  { icon: Ship, title: "Kubernetes (EKS) / ArgoCD", detail: "GitOps deploy", color: "#159e6a" },
+  { icon: Cloud, title: "AWS (VPC/ALB/Route 53) · Vercel", detail: "Cloud + edge", color: "#ea580c" },
+  { icon: Activity, title: "Prometheus / Grafana", detail: "Monitor", color: "#c026d3" },
 ];
 
 const outcomes = [

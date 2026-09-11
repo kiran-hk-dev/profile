@@ -9,6 +9,8 @@ export interface FlowStage {
   icon: LucideIcon;
   title: string;
   detail: string;
+  /** Hex accent for this stage, e.g. "#38bdf8" */
+  color: string;
 }
 
 function chunk<T>(arr: T[], size: number): T[][] {
@@ -20,14 +22,16 @@ function chunk<T>(arr: T[], size: number): T[][] {
 /** U-turn connector carrying the flow from the end of one row back to the start of the next. */
 function ElbowReturn() {
   return (
-    <div aria-hidden className="hidden lg:block py-1">
-      <svg viewBox="0 0 100 24" preserveAspectRatio="none" className="h-6 w-full text-text-faint">
+    <div aria-hidden className="hidden lg:block py-0.5">
+      <svg viewBox="0 0 100 24" preserveAspectRatio="none" className="h-5 w-full text-accent/70">
         <path
           d="M 87.5 0.5 V 12 H 12.5 V 21"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
+          strokeDasharray="5 4"
           vectorEffect="non-scaling-stroke"
+          strokeLinecap="round"
         />
         <path
           d="M 8 17 L 12.5 22.5 L 17 17"
@@ -44,22 +48,30 @@ function ElbowReturn() {
 }
 
 function StageCard({ stage, index }: { stage: FlowStage; index: number }) {
+  const tint = `color-mix(in srgb, ${stage.color} 12%, transparent)`;
+  const edge = `color-mix(in srgb, ${stage.color} 35%, transparent)`;
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.35, delay: (index % 4) * 0.07 }}
-      className="h-full rounded-2xl border border-border-soft bg-bg-elevated p-5 hover:border-accent/40 transition-colors"
+      transition={{ duration: 0.3, delay: (index % 4) * 0.06 }}
+      className="h-full rounded-xl border bg-bg-elevated p-3.5"
+      style={{ borderColor: edge }}
     >
-      <div className="flex items-start justify-between gap-2">
-        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
-          <stage.icon size={19} />
+      <div className="flex items-center justify-between gap-2">
+        <span
+          className="flex h-8 w-8 items-center justify-center rounded-lg"
+          style={{ color: stage.color, backgroundColor: tint }}
+        >
+          <stage.icon size={16} />
         </span>
-        <span className="font-mono-tag text-xs text-text-faint">{String(index + 1).padStart(2, "0")}</span>
+        <span className="font-mono-tag text-[11px] font-semibold" style={{ color: stage.color }}>
+          {String(index + 1).padStart(2, "0")}
+        </span>
       </div>
-      <h3 className="mt-4 text-[15px] font-semibold text-text leading-snug">{stage.title}</h3>
-      <p className="mt-1 text-[13px] text-text-muted leading-relaxed">{stage.detail}</p>
+      <h3 className="mt-2.5 text-[13px] font-semibold text-text leading-snug">{stage.title}</h3>
+      <p className="mt-0.5 text-xs text-text-muted leading-snug">{stage.detail}</p>
     </motion.div>
   );
 }
@@ -80,12 +92,12 @@ export function PipelineFlow({
   return (
     <div>
       {/* Entry terminal */}
-      <div className="mb-3 flex justify-center lg:grid lg:grid-cols-4 lg:gap-3">
-        <div className="flex flex-col items-center gap-1.5">
-          <span className="inline-flex items-center gap-2 rounded-full border border-dashed border-accent/50 bg-accent-soft px-4 py-1.5 font-mono-tag text-xs text-accent">
-            <Terminal size={13} /> {entry}
+      <div className="mb-2 flex justify-center lg:grid lg:grid-cols-4 lg:gap-3">
+        <div className="flex flex-col items-center gap-1">
+          <span className="inline-flex items-center gap-2 rounded-full border border-dashed border-accent/50 bg-accent-soft px-3.5 py-1 font-mono-tag text-[11px] text-accent">
+            <Terminal size={12} /> {entry}
           </span>
-          <ArrowDown size={15} className="text-accent" />
+          <ArrowDown size={14} className="text-accent" />
         </div>
       </div>
 
@@ -101,8 +113,8 @@ export function PipelineFlow({
                 <Fragment key={s.title}>
                   <StageCard stage={s} index={ri * perRow + j} />
                   {j < row.length - 1 && (
-                    <div className="flex items-center px-1.5 text-accent" aria-hidden>
-                      <ArrowRight size={18} />
+                    <div className="flex items-center px-1 text-accent" aria-hidden>
+                      <ArrowRight size={15} />
                     </div>
                   )}
                 </Fragment>
@@ -119,8 +131,8 @@ export function PipelineFlow({
           <div key={s.title}>
             <StageCard stage={s} index={i} />
             {i < stages.length - 1 && (
-              <div className="flex justify-center py-1.5 text-accent" aria-hidden>
-                <ArrowDown size={16} />
+              <div className="flex justify-center py-1 text-accent" aria-hidden>
+                <ArrowDown size={15} />
               </div>
             )}
           </div>
@@ -128,11 +140,11 @@ export function PipelineFlow({
       </div>
 
       {/* Exit terminal */}
-      <div className="mt-3 flex justify-center lg:grid lg:grid-cols-4 lg:gap-3">
-        <div className="flex flex-col items-center gap-1.5 lg:col-start-4">
-          <ArrowDown size={15} className="text-accent" />
-          <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent-soft px-4 py-1.5 font-mono-tag text-xs font-medium text-accent">
-            <Globe size={13} /> {exit}
+      <div className="mt-2 flex justify-center lg:grid lg:grid-cols-4 lg:gap-3">
+        <div className="flex flex-col items-center gap-1 lg:col-start-4">
+          <ArrowDown size={14} className="text-accent" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent-soft px-3.5 py-1 font-mono-tag text-[11px] font-medium text-accent">
+            <Globe size={12} /> {exit}
           </span>
         </div>
       </div>

@@ -19,8 +19,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 
 const clients = [
-  { icon: Globe, title: "Web client", detail: "Next.js on Vercel" },
-  { icon: Smartphone, title: "Android app", detail: "React Native · same backend" },
+  { icon: Globe, title: "Web client", detail: "Next.js on Vercel", color: "#4f7dd9" },
+  { icon: Smartphone, title: "Android app", detail: "React Native · same backend", color: "#159e6a" },
 ];
 
 const layers = [
@@ -30,6 +30,7 @@ const layers = [
     title: "REST API",
     detail: "Express.js routes & controllers",
     tech: ["Express.js", "REST", "Postman"],
+    color: "#d97706",
   },
   {
     icon: Cpu,
@@ -37,6 +38,7 @@ const layers = [
     title: "Node.js Business Logic",
     detail: "Validation, workflows",
     tech: ["Node.js", "TypeScript"],
+    color: "#7c3aed",
   },
   {
     icon: Database,
@@ -44,6 +46,7 @@ const layers = [
     title: "MongoDB / Supabase Postgres",
     detail: "Data modeling, RLS & realtime",
     tech: ["MongoDB", "Supabase", "PostgreSQL"],
+    color: "#0d9488",
   },
 ];
 
@@ -142,10 +145,16 @@ export function FullStackArchitecture() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.35, delay: i * 0.07 }}
-                  className="flex items-center gap-3 rounded-xl border border-border-soft bg-bg-elevated px-4 py-3.5"
+                  className="flex items-center gap-3 rounded-xl border border-border-soft bg-bg-elevated px-4 py-3"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent-2/15 text-accent-2">
-                    <c.icon size={18} />
+                  <span
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
+                    style={{
+                      color: c.color,
+                      backgroundColor: `color-mix(in srgb, ${c.color} 12%, transparent)`,
+                    }}
+                  >
+                    <c.icon size={16} />
                   </span>
                   <div className="min-w-0">
                     <h3 className="truncate text-sm font-semibold text-text">{c.title}</h3>
@@ -167,9 +176,15 @@ export function FullStackArchitecture() {
                   transition={{ duration: 0.35, delay: i * 0.06 }}
                   className="flex flex-col gap-4 rounded-xl border border-border-soft bg-bg-elevated px-5 py-4 sm:flex-row sm:items-center"
                 >
-                  <div className="flex min-w-0 flex-1 items-center gap-3.5">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-2/15 text-accent-2">
-                      <l.icon size={19} />
+                  <div className="flex min-w-0 flex-1 items-center gap-3">
+                    <span
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
+                      style={{
+                        color: l.color,
+                        backgroundColor: `color-mix(in srgb, ${l.color} 12%, transparent)`,
+                      }}
+                    >
+                      <l.icon size={17} />
                     </span>
                     <div className="min-w-0">
                       <p className="font-mono-tag text-[11px] uppercase tracking-widest text-text-faint">
