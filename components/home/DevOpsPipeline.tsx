@@ -17,17 +17,17 @@ import {
 import { Container as PageContainer } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
-import { PipelineFlow } from "@/components/ui/PipelineFlow";
+import { StageTimeline } from "@/components/ui/StageTimeline";
 
 const stages = [
-  { icon: Code2, title: "Code", detail: "Git · TypeScript", color: "#4f7dd9" },
-  { icon: Workflow, title: "CI/CD", detail: "Jenkins · GitHub Actions · GitLab", color: "#d97706" },
-  { icon: ShieldCheck, title: "Security Scan", detail: "Trivy image scanning", color: "#e11d48" },
-  { icon: Container, title: "Docker Build → ECR", detail: "Containerize", color: "#0284c7" },
-  { icon: FileCode2, title: "Terraform", detail: "IaC provision", color: "#7c3aed" },
-  { icon: Ship, title: "Kubernetes (EKS) / ArgoCD", detail: "GitOps deploy", color: "#159e6a" },
-  { icon: Cloud, title: "AWS (VPC/ALB/Route 53) · Vercel", detail: "Cloud + edge", color: "#ea580c" },
-  { icon: Activity, title: "Prometheus / Grafana", detail: "Monitor", color: "#c026d3" },
+  { icon: Code2, phase: "Source", title: "Code", detail: "Git · TypeScript", color: "#4f7dd9" },
+  { icon: Workflow, phase: "Build", title: "CI/CD", detail: "Jenkins · GitHub Actions · GitLab", color: "#d97706" },
+  { icon: ShieldCheck, phase: "Secure", title: "Security Scan", detail: "Trivy image scanning", color: "#e11d48" },
+  { icon: Container, phase: "Package", title: "Docker Build → ECR", detail: "Containerize", color: "#0284c7" },
+  { icon: FileCode2, phase: "Provision", title: "Terraform", detail: "IaC provision", color: "#7c3aed" },
+  { icon: Ship, phase: "Deploy", title: "Kubernetes (EKS) / ArgoCD", detail: "GitOps deploy", color: "#159e6a" },
+  { icon: Cloud, phase: "Run", title: "AWS (VPC/ALB/Route 53) · Vercel", detail: "Cloud + edge", color: "#ea580c" },
+  { icon: Activity, phase: "Observe", title: "Prometheus / Grafana", detail: "Monitor", color: "#c026d3" },
 ];
 
 const outcomes = [
@@ -45,11 +45,13 @@ export function DevOpsPipeline() {
         </p>
         <SectionHeading
           title="From Code to Production"
-          description="How I take an application from a commit to a monitored, running service — every stage automated, scanned, and observable."
+          description="How I take an application from a commit to a monitored, running service — follow the flow top to bottom."
         />
 
         <div className="rounded-2xl border border-border-soft bg-bg-elevated/50 p-5 sm:p-8">
-          <PipelineFlow stages={stages} entry="git push" exit="Live URL · monitored" perRow={4} />
+          <div className="mx-auto max-w-2xl">
+            <StageTimeline stages={stages} entry="git push" exit="Live URL · monitored" />
+          </div>
         </div>
 
         <div className="mt-6 grid sm:grid-cols-3 gap-4">
