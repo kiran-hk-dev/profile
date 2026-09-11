@@ -17,6 +17,7 @@ import {
 import { Container as PageContainer } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { PipelineFlow } from "@/components/ui/PipelineFlow";
 
 const stages = [
   { icon: Code2, title: "Code", detail: "Git · TypeScript" },
@@ -47,29 +48,9 @@ export function DevOpsPipeline() {
           description="How I take an application from a commit to a monitored, running service — every stage automated, scanned, and observable."
         />
 
-        <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {stages.map((stage, i) => (
-            <motion.li
-              key={stage.title}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.35, delay: (i % 4) * 0.07 }}
-              className="relative rounded-2xl border border-border-soft bg-bg-elevated p-5 hover:border-accent/40 transition-colors"
-            >
-              <div className="flex items-start justify-between">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
-                  <stage.icon size={19} />
-                </span>
-                <span className="font-mono-tag text-xs text-text-faint">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <h3 className="mt-4 text-[15px] font-semibold text-text leading-snug">{stage.title}</h3>
-              <p className="mt-1 text-[13px] text-text-muted leading-relaxed">{stage.detail}</p>
-            </motion.li>
-          ))}
-        </ol>
+        <div className="rounded-2xl border border-border-soft bg-bg-elevated/50 p-5 sm:p-8">
+          <PipelineFlow stages={stages} entry="git push" exit="Live URL · monitored" perRow={4} />
+        </div>
 
         <div className="mt-6 grid sm:grid-cols-3 gap-4">
           {outcomes.map((o, i) => (

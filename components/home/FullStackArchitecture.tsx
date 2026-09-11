@@ -3,27 +3,27 @@
 import { motion } from "framer-motion";
 import {
   Globe,
+  Smartphone,
   Network,
   Cpu,
   Database,
-  Smartphone,
   ArrowDown,
+  ArrowUp,
   Layers,
   Lock,
   Rocket,
+  CheckCircle2,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 
+const clients = [
+  { icon: Globe, title: "Web client", detail: "Next.js on Vercel" },
+  { icon: Smartphone, title: "Android app", detail: "React Native · same backend" },
+];
+
 const layers = [
-  {
-    icon: Globe,
-    layer: "Client layer",
-    title: "Next.js / React Frontend",
-    detail: "UI, forms, dashboards",
-    tech: ["Next.js", "React", "TypeScript", "Vercel"],
-  },
   {
     icon: Network,
     layer: "API layer",
@@ -55,6 +55,47 @@ const capabilities = [
   { icon: Rocket, title: "Deployment", detail: "Vercel edge + Kubernetes rollouts" },
 ];
 
+/** One flow line splitting into two (entry → two clients). */
+function Fork() {
+  return (
+    <div aria-hidden className="text-border">
+      <div className="mx-auto h-3 w-px bg-current" />
+      <div className="mx-[25%] border-t-2 border-current" />
+      <div className="relative h-3">
+        <span className="absolute left-1/4 top-0 h-full w-px -translate-x-1/2 bg-current" />
+        <span className="absolute left-3/4 top-0 h-full w-px -translate-x-1/2 bg-current" />
+      </div>
+    </div>
+  );
+}
+
+/** Two flow lines merging into one (two clients → API). */
+function Merge() {
+  return (
+    <div aria-hidden className="text-border">
+      <div className="relative h-3">
+        <span className="absolute left-1/4 top-0 h-full w-px -translate-x-1/2 bg-current" />
+        <span className="absolute left-3/4 top-0 h-full w-px -translate-x-1/2 bg-current" />
+      </div>
+      <div className="mx-[25%] border-t-2 border-current" />
+      <div className="flex flex-col items-center">
+        <div className="h-3 w-px bg-current" />
+        <ArrowDown size={15} className="text-accent" />
+      </div>
+    </div>
+  );
+}
+
+/** Straight down-connector between stacked layers. */
+function FlowDown() {
+  return (
+    <div aria-hidden className="flex flex-col items-center py-1">
+      <div className="h-3 w-px bg-border" />
+      <ArrowDown size={15} className="text-accent" />
+    </div>
+  );
+}
+
 export function FullStackArchitecture() {
   return (
     <section>
@@ -67,9 +108,56 @@ export function FullStackArchitecture() {
           description="I've shipped frontend, backend, and mobile from one codebase family — Next.js/React UIs, Node/Express APIs, MongoDB/Supabase data, and a React Native Android app on the same backend."
         />
 
-        <div className="rounded-2xl border border-border-soft bg-bg-elevated/50 p-5 sm:p-8">
-          <p className="font-mono-tag text-xs text-text-faint mb-6">{"// request flow — top to bottom"}</p>
-          <div className="flex flex-col items-stretch max-w-3xl mx-auto">
+        <div className="relative rounded-2xl border border-border-soft bg-bg-elevated/50 p-5 sm:p-8">
+          {/* Side annotations (desktop) */}
+          <div aria-hidden className="absolute left-4 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-2 xl:flex">
+            <span className="font-mono-tag text-[11px] uppercase tracking-widest text-text-faint [writing-mode:vertical-lr] rotate-180">
+              Request
+            </span>
+            <ArrowDown size={14} className="text-accent" />
+          </div>
+          <div aria-hidden className="absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-2 xl:flex">
+            <ArrowUp size={14} className="text-accent-2" />
+            <span className="font-mono-tag text-[11px] uppercase tracking-widest text-text-faint [writing-mode:vertical-lr]">
+              Response
+            </span>
+          </div>
+
+          <div className="mx-auto max-w-3xl">
+            {/* Entry */}
+            <div className="flex justify-center">
+              <span className="inline-flex items-center rounded-full border border-dashed border-accent/50 bg-accent-soft px-4 py-1.5 font-mono-tag text-xs text-accent">
+                User requests
+              </span>
+            </div>
+
+            <Fork />
+
+            {/* Clients */}
+            <div className="grid grid-cols-2 gap-4">
+              {clients.map((c, i) => (
+                <motion.div
+                  key={c.title}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.35, delay: i * 0.07 }}
+                  className="flex items-center gap-3 rounded-xl border border-border-soft bg-bg-elevated px-4 py-3.5"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent-2/15 text-accent-2">
+                    <c.icon size={18} />
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="truncate text-sm font-semibold text-text">{c.title}</h3>
+                    <p className="truncate text-xs text-text-muted">{c.detail}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <Merge />
+
+            {/* Layers */}
             {layers.map((l, i) => (
               <div key={l.title}>
                 <motion.div
@@ -77,9 +165,9 @@ export function FullStackArchitecture() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.35, delay: i * 0.06 }}
-                  className="flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-border-soft bg-bg-elevated px-5 py-4"
+                  className="flex flex-col gap-4 rounded-xl border border-border-soft bg-bg-elevated px-5 py-4 sm:flex-row sm:items-center"
                 >
-                  <div className="flex items-center gap-3.5 min-w-0 sm:flex-1">
+                  <div className="flex min-w-0 flex-1 items-center gap-3.5">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-2/15 text-accent-2">
                       <l.icon size={19} />
                     </span>
@@ -87,7 +175,7 @@ export function FullStackArchitecture() {
                       <p className="font-mono-tag text-[11px] uppercase tracking-widest text-text-faint">
                         {l.layer}
                       </p>
-                      <h3 className="mt-0.5 text-[15px] font-semibold text-text leading-snug">{l.title}</h3>
+                      <h3 className="mt-0.5 text-[15px] font-semibold leading-snug text-text">{l.title}</h3>
                       <p className="text-[13px] text-text-muted">{l.detail}</p>
                     </div>
                   </div>
@@ -97,36 +185,22 @@ export function FullStackArchitecture() {
                     ))}
                   </div>
                 </motion.div>
-                {i < layers.length - 1 && (
-                  <div className="flex justify-center py-1.5 text-text-faint" aria-hidden>
-                    <ArrowDown size={16} />
-                  </div>
-                )}
+                {i < layers.length - 1 && <FlowDown />}
               </div>
             ))}
 
-            <div className="flex justify-center py-1.5 text-text-faint" aria-hidden>
-              <ArrowDown size={16} />
-            </div>
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.35, delay: 0.24 }}
-              className="flex items-center gap-3.5 rounded-xl border border-dashed border-accent/40 bg-accent-soft/40 px-5 py-4"
-            >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent">
-                <Smartphone size={19} />
+            {/* Exit */}
+            <div className="flex flex-col items-center pt-1">
+              <div className="h-3 w-px bg-border" aria-hidden />
+              <ArrowDown size={15} className="text-accent" aria-hidden />
+              <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent-soft px-4 py-1.5 font-mono-tag text-xs font-medium text-accent">
+                <CheckCircle2 size={13} /> Response · realtime updates
               </span>
-              <div>
-                <h3 className="text-[15px] font-semibold text-text leading-snug">React Native Android app</h3>
-                <p className="text-[13px] text-text-muted">Same Supabase backend — realtime orders on mobile</p>
-              </div>
-            </motion.div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-2 lg:grid-cols-5 gap-3">
+        <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-5">
           {capabilities.map((c, i) => (
             <motion.div
               key={c.title}
@@ -138,7 +212,7 @@ export function FullStackArchitecture() {
             >
               <c.icon size={17} className="text-accent" />
               <p className="mt-2.5 text-sm font-semibold text-text">{c.title}</p>
-              <p className="mt-1 text-xs text-text-muted leading-relaxed">{c.detail}</p>
+              <p className="mt-1 text-xs leading-relaxed text-text-muted">{c.detail}</p>
             </motion.div>
           ))}
         </div>

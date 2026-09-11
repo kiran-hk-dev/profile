@@ -1,23 +1,18 @@
 import type { Metadata } from "next";
 import {
-  Code2,
-  GitBranch,
-  Workflow,
-  FlaskConical,
-  ShieldCheck,
-  Container,
-  FileCode2,
-  Rocket,
-  Cloud,
-  Activity,
   Timer,
   Gauge,
+  ShieldCheck,
+  Rocket,
+  Workflow,
+  Activity,
   CheckCircle2,
   Boxes,
 } from "lucide-react";
 import { Container as PageContainer } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
+import { DevOpsTimeline } from "@/components/devops/DevOpsTimeline";
 
 export const metadata: Metadata = {
   title: "DevOps",
@@ -29,19 +24,6 @@ const stats = [
   { icon: Gauge, metric: "99% uptime", label: "production Kubernetes clusters" },
   { icon: Rocket, metric: "Zero-downtime", label: "rollouts through traffic spikes" },
   { icon: ShieldCheck, metric: "Zero critical vulns", label: "shipped — scanned in-pipeline" },
-];
-
-const stages = [
-  { icon: Code2, phase: "Source", title: "Code", detail: "Git · TypeScript" },
-  { icon: GitBranch, phase: "Source", title: "GitHub / GitLab", detail: "Version control" },
-  { icon: Workflow, phase: "Build", title: "Jenkins / GitHub Actions", detail: "Build & automate" },
-  { icon: FlaskConical, phase: "Build", title: "Test", detail: "Validation" },
-  { icon: ShieldCheck, phase: "Secure", title: "Security Scan", detail: "Trivy image scanning" },
-  { icon: Container, phase: "Package", title: "Docker Build → ECR", detail: "Containerize" },
-  { icon: FileCode2, phase: "Provision", title: "Terraform", detail: "IaC provision" },
-  { icon: Rocket, phase: "Deploy", title: "Kubernetes (EKS) / ArgoCD", detail: "GitOps deploy" },
-  { icon: Cloud, phase: "Run", title: "AWS (VPC/ALB/Route 53) · Vercel Edge", detail: "Cloud infrastructure" },
-  { icon: Activity, phase: "Observe", title: "Prometheus / Grafana", detail: "Monitor" },
 ];
 
 const practices = [
@@ -81,7 +63,7 @@ export default function DevOpsPage() {
       </p>
       <SectionHeading
         title="From Code to Production"
-        description="The pipeline I build and operate to get an application from a commit to a running, monitored service."
+        description="The pipeline I build and operate to get an application from a commit to a running, monitored service — follow it top to bottom."
       />
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -98,33 +80,10 @@ export default function DevOpsPage() {
       </div>
 
       <h2 className="font-display text-xl text-text mt-16 mb-2">Pipeline stages</h2>
-      <p className="text-sm text-text-muted mb-6">Ten stages, in flow order — grouped by phase from source to observe.</p>
-      <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {stages.map((stage, i) => (
-          <li
-            key={stage.title}
-            className="relative rounded-2xl border border-border-soft bg-bg-elevated p-5 hover:border-accent/40 transition-colors"
-          >
-            <div className="flex items-center justify-between gap-3">
-              <span className="inline-flex items-center rounded-md border border-border-soft bg-bg-elevated-2 px-2 py-0.5 font-mono-tag text-[11px] uppercase tracking-widest text-text-muted">
-                {stage.phase}
-              </span>
-              <span className="font-mono-tag text-xs text-text-faint">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-            </div>
-            <div className="mt-4 flex items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent">
-                <stage.icon size={19} />
-              </span>
-              <div className="min-w-0">
-                <h3 className="text-[15px] font-semibold text-text leading-snug">{stage.title}</h3>
-                <p className="text-[13px] text-text-muted">{stage.detail}</p>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ol>
+      <p className="text-sm text-text-muted mb-10">Ten stages in flow order — grouped by phase, from source to observe.</p>
+      <div className="rounded-2xl border border-border-soft bg-bg-elevated/50 p-5 sm:p-8">
+        <DevOpsTimeline />
+      </div>
 
       <h2 className="font-display text-xl text-text mt-16 mb-6">Practice Areas</h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
