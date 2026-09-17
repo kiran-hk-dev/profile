@@ -2,22 +2,132 @@ import { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    slug: "ai-augmented-gitops-platform",
+    title: "AI-Augmented GitOps Platform",
+    subtitle: "ArgoCD · EKS · LLM Incident Triage",
+    category: "DevOps · GitOps · AIOps",
+    duration: "2025 – 2026",
+    description:
+      "Reference GitOps platform recruiters ask for in 2026: app repos + GitOps repo, ArgoCD App-of-Apps with ApplicationSets across dev/staging/prod on EKS, Image Updater auto-bumps, Rollouts canaries gated by Prometheus — plus an LLM layer that turns every alert into a Slack message with log summary, probable cause, and runbook link.",
+    role: "Platform / DevOps Engineer",
+    technologies: {
+      devops: ["ArgoCD (App-of-Apps, ApplicationSets, Image Updater)", "Argo Rollouts (canary/blue-green)", "Jenkins Shared Libs", "GitHub Actions", "Helm + Kustomize", "Terraform"],
+      cloud: ["AWS EKS", "ECR", "VPC + ALB + Route 53", "IRSA", "External Secrets (AWS Secrets Manager)"],
+      monitoring: ["Prometheus + Alertmanager", "Grafana (SLO dashboards)", "Loki + OpenTelemetry", "k8sgpt operator", "LLM alert-enrichment webhook → Slack"],
+      security: ["Trivy + cosign signing + SBOM", "Kyverno policies", "Sealed/External Secrets", "ArgoCD RBAC + SSO"],
+    },
+    features: [
+      {
+        title: "GitOps Automation (the ArgoCD loop)",
+        items: [
+          "CI never deploys: Jenkins builds → tests → Trivy-scans → pushes to ECR → commits tag to GitOps repo",
+          "ArgoCD automated sync + self-heal + prune; sync waves order CRDs → infra → app → PostSync smoke jobs",
+          "ApplicationSets stamp dev/staging/prod from one template; Image Updater bumps tags automatically",
+          "Notifications → Slack on sync succeeded/degraded; sync windows freeze prod during business hours",
+        ],
+      },
+      {
+        title: "Progressive Delivery",
+        items: ["Argo Rollouts canary 10% → 50% → 100% with Prometheus analysis (error-rate, p99)", "Auto-rollback + ArgoCD health reflects rollout state"],
+      },
+      {
+        title: "AI Integration (AIOps)",
+        items: [
+          "Alertmanager webhook → LLM service: summarises Loki logs + recent deploys + suggests fix with runbook link",
+          "k8sgpt operator annotates failed pods/syncs in-cluster with remediation hints",
+          "PR bot reviews Terraform/K8s diffs for cost + security risks before merge",
+          "Slack ChatOps: /deploy status, /rollout promote|abort, /logs tail — backed by ArgoCD + Loki APIs",
+        ],
+      },
+    ],
+    contributions: [
+      {
+        title: "Platform",
+        items: [
+          "Designed app-repo/GitOps-repo split and App-of-Apps tree with per-team ArgoCD Projects + RBAC",
+          "Wrote Terraform modules (VPC/EKS/ECR/IAM/IRSA) with S3 remote state; Karpenter autoscaling + spot pools",
+          "Built Jenkins shared library + GitHub Actions reusable workflows for the CI half of GitOps",
+          "Built LLM enrichment service (FastAPI + embeddings over runbooks) and Slack delivery",
+        ],
+      },
+    ],
+    architecture: [
+      { label: "git push (app repo)" },
+      { label: "CI: build → Trivy → ECR → commit tag to GitOps repo" },
+      { label: "ArgoCD ApplicationSets (auto-sync + self-heal)" },
+      { label: "Argo Rollouts canary + Prometheus analysis" },
+      { label: "EKS (ALB → pods) + External Secrets" },
+      { label: "Alerts → LLM summary + runbook → Slack" },
+    ],
+    kpis: ["Zero-touch prod deploys", "Canary-gated releases with auto-rollback", "AI-enriched pages cut triage time"],
+    featured: true,
+  },
+  {
+    slug: "eks-argocd-app-of-apps",
+    title: "MERN on EKS with ArgoCD App-of-Apps",
+    subtitle: "Production GitOps Reference",
+    category: "DevOps · AWS EKS · GitOps",
+    duration: "2025 – 2026",
+    description:
+      "Production-grade MERN deployment on EKS driven entirely by GitOps: one commit flows through CI to a GitOps tag bump, ArgoCD syncs three environments, Rollouts canary it, and Prometheus SLOs decide promotion — with sealed secrets and policy gates throughout.",
+    role: "DevOps Engineer",
+    technologies: {
+      frontend: ["React", "Tailwind CSS"],
+      backend: ["Node.js", "Express.js", "REST APIs"],
+      database: ["MongoDB"],
+      cloud: ["AWS EKS", "ECR", "VPC", "ALB + ExternalDNS + cert-manager"],
+      devops: ["ArgoCD", "ArgoCD Image Updater", "Argo Rollouts", "Terraform", "Jenkins + GitHub Actions", "Helm/Kustomize"],
+      monitoring: ["Prometheus", "Grafana", "Loki"],
+      security: ["Trivy", "Kyverno", "External Secrets"],
+    },
+    features: [
+      {
+        title: "Multi-Env GitOps",
+        items: ["gitops/ overlays: base + dev/staging/prod; ApplicationSet generates all three", "PR to prod overlay = auditable promotion; ArgoCD diff shows exactly what changes"],
+      },
+      {
+        title: "Zero-Downtime Releases",
+        items: ["Rolling + canary strategies, PreSync DB migrations, PostSync smoke tests", "One-click ArgoCD rollback to last healthy revision"],
+      },
+    ],
+    contributions: [
+      {
+        title: "DevOps",
+        items: [
+          "Built Terraform EKS cluster (managed node groups + Karpenter, ALB controller, EBS CSI)",
+          "Authored Helm charts + Kustomize overlays consumed by ArgoCD; sync-wave annotated",
+          "Wired Image Updater (ECR auth via IRSA) + Slack notifications for every sync",
+          "Added Prometheus SLO burn-rate alerts and Grafana rollout dashboards",
+        ],
+      },
+    ],
+    architecture: [
+      { label: "React + Node/Express (ECR images)" },
+      { label: "GitOps repo (env overlays)" },
+      { label: "ArgoCD ApplicationSets" },
+      { label: "Argo Rollouts canary" },
+      { label: "EKS + ALB + Route 53" },
+    ],
+    kpis: ["3 envs from one template", "Zero-downtime canary releases", "Full audit trail per deploy"],
+    featured: true,
+  },
+  {
     slug: "mychits-chitxpert",
     title: "MyChits",
     subtitle: "ChitXpert",
-    category: "Full Stack + DevOps",
+    category: "Full Stack + GitOps",
     duration: "April 2025 – Present",
     description:
-      "ChitXpert/MyChits platform for licensed chit-fund operations — customer enrolment, real-time payment reporting, and collection workflows — built and run end-to-end (MERN app + Docker/Kubernetes/Jenkins on AWS) for Vijaya Vinayak Chitfunds Pvt. Ltd.",
+      "ChitXpert/MyChits platform for licensed chit-fund operations — customer enrolment, real-time payment reporting, and collection workflows — shipped through an ArgoCD GitOps pipeline (CI → ECR → GitOps tag commit → auto-sync) with AI-enriched on-call for Vijaya Vinayak Chitfunds Pvt. Ltd.",
     role: "DevOps Engineer & Full-Stack Developer",
     technologies: {
       frontend: ["React", "React Hooks", "Tailwind CSS"],
       backend: ["Node.js", "Express.js", "REST APIs"],
       database: ["MongoDB"],
-      cloud: ["AWS", "DigitalOcean"],
-      devops: ["Docker", "Kubernetes", "Jenkins", "GitLab CI/CD"],
-      monitoring: ["Prometheus", "Grafana"],
-      security: ["Container image scanning", "Access-control auditing"],
+      cloud: ["AWS EKS", "ECR", "ALB + Route 53", "DigitalOcean"],
+      devops: ["Docker", "Kubernetes", "ArgoCD (auto-sync + Image Updater)", "Argo Rollouts canary", "Jenkins", "GitLab CI/CD", "Terraform"],
+      monitoring: ["Prometheus", "Grafana", "Loki", "LLM alert summaries → Slack"],
+      security: ["Trivy + image signing", "Kyverno policies", "External Secrets"],
     },
     features: [
       {
@@ -31,6 +141,10 @@ export const projects: Project[] = [
       {
         title: "Communication",
         items: ["WhatsApp integration for customer notifications"],
+      },
+      {
+        title: "GitOps Delivery",
+        items: ["ArgoCD App-of-Apps dev/staging/prod", "Canary rollouts with auto-rollback", "AI-summarised alerts in Slack"],
       },
     ],
     contributions: [
@@ -51,12 +165,12 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: "DevOps",
+        title: "DevOps (GitOps + AI)",
         items: [
-          "Containerized services with Docker",
-          "Zero-downtime Kubernetes rollouts (100% uptime in peaks)",
-          "Built CI/CD pipelines with Jenkins and GitLab CI/CD",
-          "Set up Prometheus and Grafana monitoring",
+          "Containerized services with Docker; ECR-backed images",
+          "ArgoCD automated sync + self-heal + Image Updater; zero manual kubectl to prod",
+          "Argo Rollouts canaries gated by Prometheus; 100% uptime through peaks",
+          "LLM alert enrichment (logs + runbook link → Slack) with k8sgpt in-cluster triage",
         ],
       },
     ],
@@ -65,10 +179,9 @@ export const projects: Project[] = [
       { label: "REST API" },
       { label: "Node.js / Express.js" },
       { label: "MongoDB" },
-      { label: "Docker" },
-      { label: "Kubernetes" },
-      { label: "AWS / DigitalOcean" },
-      { label: "Prometheus / Grafana" },
+      { label: "Docker → ECR" },
+      { label: "ArgoCD GitOps → EKS" },
+      { label: "Prometheus / Grafana + AI triage" },
     ],
     kpis: [
       "60% faster customer onboarding",
@@ -82,43 +195,43 @@ export const projects: Project[] = [
     title: "Native minds Technology Pvt Ltd",
     subtitle: "Retail Billing Software",
 
-    category: "DevOps · Retail",
+    category: "DevOps · Retail · GitOps",
     duration: "June 2022 – January 2025",
     description:
-      "Retail billing platform run as containerized microservices on Kubernetes — +30% scalability, 99% cluster uptime, 30% faster deployments — built to scale through traffic spikes without downtime.",
+      "Retail billing platform run as containerized microservices on EKS with ArgoCD GitOps — +30% scalability, 99% cluster uptime, 30% faster deployments — canary releases and policy-gated, scanned images throughout.",
     role: "DevOps Engineer",
     technologies: {
-      devops: ["Docker", "Kubernetes", "Jenkins", "GitLab CI/CD"],
-      cloud: ["AWS", "DigitalOcean"],
-      monitoring: ["Prometheus", "Grafana"],
-      security: ["Container image scanning"],
+      devops: ["Docker", "Kubernetes (EKS)", "ArgoCD", "Jenkins", "GitLab CI/CD", "Terraform", "Helm"],
+      cloud: ["AWS (EKS/ECR/VPC/ALB)", "DigitalOcean"],
+      monitoring: ["Prometheus", "Grafana", "Alertmanager"],
+      security: ["Trivy image scanning", "Kyverno policies", "External Secrets"],
     },
     features: [
       {
         title: "Deployment & Scaling",
-        items: ["Zero-downtime deployments", "Horizontal scaling under traffic spikes", "Automated rollbacks"],
+        items: ["ArgoCD-synced deployments with automated rollbacks", "Horizontal + Karpenter scaling under traffic spikes", "Sync-wave ordered infra→app deploys"],
       },
     ],
     contributions: [
       {
         title: "DevOps",
         items: [
-          "Containerized microservices with Docker (−10% image size)",
-          "Orchestrated services with Kubernetes for scaling and rollbacks",
-          "Automated Jenkins pipelines across dev/staging/prod (−30% deploy time)",
-          "Prometheus/Grafana monitoring (−10% MTTR)",
+          "Containerized microservices with Docker (−10% image size, multi-stage builds)",
+          "Introduced ArgoCD GitOps pilot: declarative apps, auto-sync + self-heal, env overlays",
+          "Automated Jenkins pipelines across dev/staging/prod (−30% deploy time, CI commits tag → ArgoCD deploys)",
+          "Prometheus/Grafana monitoring + Alertmanager routing (−10% MTTR)",
         ],
       },
     ],
     architecture: [
       { label: "Microservices" },
-      { label: "Docker" },
-      { label: "Kubernetes" },
-      { label: "Jenkins CI/CD" },
-      { label: "AWS" },
+      { label: "Docker → ECR" },
+      { label: "GitOps repo" },
+      { label: "ArgoCD → EKS" },
+      { label: "AWS ALB + Route 53" },
       { label: "Prometheus / Grafana" },
     ],
-    kpis: ["30% faster deployments", "99% cluster uptime", "Zero-downtime deployments"],
+    kpis: ["30% faster deployments", "99% cluster uptime", "Zero-downtime GitOps deployments"],
     featured: true,
   },
   {
@@ -163,7 +276,7 @@ export const projects: Project[] = [
     ],
     kpis: ["Live in production on Vercel"],
     liveDemo: "https://profile-theta-smoky.vercel.app/",
-    featured: true,
+    featured: false,
   },
   {
     slug: "learn-with-kiran",
@@ -172,26 +285,26 @@ export const projects: Project[] = [
     category: "Full Stack · EdTech",
     duration: "2026",
     description:
-      "Complete DevOps training platform — Linux, Git, AWS, Docker, Jenkins, Kubernetes, EKS, Terraform — with roadmaps, command playground, troubleshooting guides, and interview prep. Deployed on Vercel.",
+      "Complete DevOps training platform — Linux, Git, AWS, Docker, Jenkins, Kubernetes, EKS, Terraform, ArgoCD GitOps, AI for DevOps — with roadmaps, command playground, troubleshooting guides, and interview prep. Deployed on Vercel.",
     role: "Full-Stack Developer & DevOps Curriculum Engineer",
     technologies: {
       frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
       backend: ["REST APIs"],
       cloud: ["Vercel", "AWS (taught: EC2/S3/VPC/IAM/EKS/ECR)"],
-      devops: ["Docker", "Jenkins", "Kubernetes", "Terraform", "GitHub Actions"],
+      devops: ["Docker", "Jenkins", "Kubernetes", "ArgoCD + Rollouts", "Terraform", "GitHub Actions"],
     },
     features: [
       {
         title: "Learn",
-        items: ["Linux, Git, AWS, Docker, Jenkins, Kubernetes, EKS, Terraform tracks", "What/why/how + commands + troubleshooting per topic"],
+        items: ["Linux, Git, AWS, Docker, Jenkins, Kubernetes, EKS, Terraform, ArgoCD, AIOps tracks", "What/why/how + commands + troubleshooting per topic"],
       },
       {
         title: "Practice",
-        items: ["Interactive command playground terminal", "Real-world projects section", "Career roadmap (Beginner → Job Ready)"],
+        items: ["Interactive command playground terminal", "Real-world GitOps projects section", "Career roadmap (Beginner → Job Ready)"],
       },
       {
         title: "Interview",
-        items: ["Interview questions bank", "Architecture walkthroughs (Git push → production)"],
+        items: ["Interview questions bank (incl. ArgoCD + AI scenarios)", "Architecture walkthroughs (git push → ArgoCD sync → monitored prod)"],
       },
     ],
     contributions: [
@@ -199,7 +312,7 @@ export const projects: Project[] = [
         title: "Build",
         items: [
           "Built curriculum pages, playground terminal, and roadmap flows",
-          "Authored production-grade DevOps content (EKS/ECR/ALB/Route 53/Terraform)",
+          "Authored production-grade DevOps content (EKS/ECR/ALB/Route 53/Terraform/ArgoCD/AI triage)",
           "Deployed and operated the Vercel production build",
         ],
       },
@@ -210,7 +323,7 @@ export const projects: Project[] = [
       { label: "Curriculum Content Layer" },
       { label: "Vercel Edge" },
     ],
-    kpis: ["8 technology tracks live", "Playground + roadmap + interview prep shipped"],
+    kpis: ["10 technology tracks incl. ArgoCD + AIOps", "Playground + roadmap + interview prep shipped"],
     liveDemo: "https://learnwithkiran.vercel.app/",
     featured: true,
   },
@@ -271,7 +384,7 @@ export const projects: Project[] = [
     ],
     kpis: ["Realtime order-to-kitchen flow live", "GST billing + inventory + reports shipped"],
     liveDemo: "https://myhotelwebsite.vercel.app/",
-    featured: true,
+    featured: false,
   },
   {
     slug: "train-with-kiran-academy",
@@ -280,24 +393,24 @@ export const projects: Project[] = [
     duration: "2026",
     category: "Full Stack · EdTech · IaC",
     description:
-      "Interactive academy build: 14 topics from Linux to production AWS (IAM, VPC, EC2, S3, ALB, Route 53, Docker, Jenkins, Kubernetes, EKS/ECR, Terraform, monitoring/security) with architecture explorer, playground, and progress dashboard.",
+      "Interactive academy build: 16 topics from Linux to production AWS (IAM, VPC, EC2, S3, ALB, Route 53, Docker, Jenkins, Kubernetes, EKS/ECR, ArgoCD GitOps, Terraform, monitoring/security, AI for DevOps) with architecture explorer, playground, and progress dashboard.",
     role: "Full-Stack Developer & DevOps Curriculum Engineer",
     technologies: {
       frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
       backend: ["REST APIs"],
       database: ["PostgreSQL"],
       cloud: ["Vercel", "AWS (taught: IAM/VPC/EC2/S3/ALB/Route 53/EKS/ECR)"],
-      devops: ["Terraform", "Docker", "Kubernetes", "Jenkins", "GitHub Actions"],
-      monitoring: ["Prometheus", "Grafana"],
+      devops: ["Terraform", "Docker", "Kubernetes", "ArgoCD + Rollouts", "Jenkins", "GitHub Actions"],
+      monitoring: ["Prometheus", "Grafana", "Loki + AI triage"],
     },
     features: [
       {
         title: "Curriculum",
-        items: ["14 topics: Linux → Git → AWS → Docker → Jenkins → K8s → EKS/ECR → Terraform → monitoring/security", "60+ commands with expected output + real errors", "25+ interview questions with graded answers"],
+        items: ["16 topics: Linux → Git → AWS → Docker → Jenkins → K8s → EKS/ECR → ArgoCD → Terraform → monitoring/security → AIOps", "60+ commands with expected output + real errors", "30+ interview questions with graded answers"],
       },
       {
         title: "Interactive",
-        items: ["Architecture explorer (user request → app)", "Command playground", "Hands-on projects (14)", "Progress dashboard"],
+        items: ["Architecture explorer (git push → ArgoCD → prod)", "Command playground", "Hands-on GitOps projects (14)", "Progress dashboard"],
       },
     ],
     contributions: [
@@ -317,8 +430,8 @@ export const projects: Project[] = [
       { label: "Progress Dashboard" },
       { label: "Vercel Edge" },
     ],
-    kpis: ["14 topics · 60+ commands · 14 hands-on projects live"],
+    kpis: ["16 topics · 60+ commands · 14 hands-on projects live"],
     liveDemo: "https://learn-with-kiran.vercel.app/",
-    featured: true,
+    featured: false,
   },
 ];

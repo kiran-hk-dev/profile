@@ -9,15 +9,15 @@ import { Button } from "@/components/ui/Button";
 import { PipelineDiagram } from "@/components/ui/PipelineDiagram";
 
 const nodes = [
-  { label: "Next.js / React Frontend", detail: "App Router · Vercel" },
-  { label: "REST API", detail: "Node.js / Express.js" },
-  { label: "MongoDB / Supabase", detail: "Data + realtime layer" },
-  { label: "Docker → ECR", detail: "Containerization" },
-  { label: "CI/CD", detail: "Jenkins · GitHub Actions · GitLab" },
-  { label: "Terraform", detail: "Infrastructure as Code" },
-  { label: "Kubernetes (EKS) / ArgoCD", detail: "GitOps orchestration" },
-  { label: "AWS (VPC/ALB/Route 53)", detail: "Cloud infrastructure" },
-  { label: "Monitoring", detail: "Prometheus · Grafana" },
+  { label: "App repo: Next.js / Node API", detail: "CI builds + AI diff review" },
+  { label: "Trivy scan → ECR + cosign", detail: "Signed, gated images" },
+  { label: "CI commits tag → GitOps repo", detail: "Only deploy trigger" },
+  { label: "Terraform: VPC / EKS / IAM", detail: "S3 remote state" },
+  { label: "ArgoCD App-of-Apps (auto-sync)", detail: "ApplicationSets · self-heal" },
+  { label: "Argo Rollouts canary", detail: "Prometheus analysis gate" },
+  { label: "EKS + ALB / Route 53", detail: "IRSA · External Secrets" },
+  { label: "Prometheus / Grafana / Loki", detail: "SLO burn-rate alerts" },
+  { label: "AI triage → Slack + runbook", detail: "k8sgpt · LLM summary" },
 ];
 
 export function Hero() {
@@ -68,7 +68,7 @@ export function Hero() {
             className="relative"
           >
             <div className="rounded-2xl border border-border-soft bg-bg-elevated/60 backdrop-blur-sm p-5 sm:p-6">
-              <p className="font-mono-tag text-xs text-text-faint mb-4">{"// application lifecycle"}</p>
+              <p className="font-mono-tag text-xs text-text-faint mb-4">{"// git push → AI-watched production"}</p>
               <PipelineDiagram nodes={nodes} direction="vertical" />
             </div>
           </motion.div>

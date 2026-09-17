@@ -1,31 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Layers, Server, Cloud, ShieldCheck } from "lucide-react";
+import { GitBranch, Rocket, ShieldCheck, Bot } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { profile } from "@/data/profile";
 
 const highlights = [
   {
-    icon: Layers,
-    title: "Full Stack Development",
-    detail: "React, Node.js, Express.js, MongoDB",
+    icon: GitBranch,
+    title: "GitOps (ArgoCD)",
+    detail: "App-of-Apps · Image Updater · auto-sync",
   },
   {
-    icon: Server,
-    title: "Backend & APIs",
-    detail: "REST API design, business logic, PostgreSQL",
-  },
-  {
-    icon: Cloud,
-    title: "Cloud & DevOps",
-    detail: "AWS, Docker, Kubernetes, Jenkins, GitLab CI/CD",
+    icon: Rocket,
+    title: "EKS + Terraform + Rollouts",
+    detail: "Canary releases · IaC · autoscaling",
   },
   {
     icon: ShieldCheck,
-    title: "Monitoring & Security",
-    detail: "Prometheus, Grafana, container image scanning",
+    title: "DevSecOps",
+    detail: "Trivy · cosign · Kyverno · ESO",
+  },
+  {
+    icon: Bot,
+    title: "AI-Augmented Ops",
+    detail: "LLM triage · k8sgpt · ChatOps",
   },
 ];
 

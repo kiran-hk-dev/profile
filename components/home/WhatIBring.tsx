@@ -1,22 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Hammer, Plug, Rocket, Gauge } from "lucide-react";
+import { GitBranch, Rocket, ShieldCheck, Bot } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const items = [
-  { icon: Hammer, title: "Build", body: "I build frontend interfaces, backend APIs, and the business logic that connects them." },
-  { icon: Plug, title: "Integrate", body: "I connect web applications to backend services and databases with well-designed REST APIs." },
-  { icon: Rocket, title: "Deploy", body: "I containerize applications and deploy them to Kubernetes on cloud infrastructure." },
-  { icon: Gauge, title: "Operate", body: "I automate deployments, monitor production systems, and resolve issues quickly." },
+  { icon: GitBranch, title: "Automate (GitOps)", body: "App repo → CI → GitOps tag commit → ArgoCD auto-sync + self-heal across dev/staging/prod. No manual kubectl to production." },
+  { icon: Rocket, title: "Release Safely", body: "Argo Rollouts canaries gated by Prometheus SLOs with auto-rollback, sync waves/hooks, and one-click ArgoCD rollback." },
+  { icon: ShieldCheck, title: "Secure by Default", body: "Trivy + cosign-signed images, Kyverno policies, External Secrets — zero critical vulnerabilities shipped." },
+  { icon: Bot, title: "Operate with AI", body: "Every alert arrives in Slack with an LLM log summary, probable cause, and runbook link; k8sgpt triages in-cluster." },
 ];
 
 export function WhatIBring() {
   return (
     <section>
       <Container className="py-20 sm:py-24">
-        <SectionHeading title="What I Bring" />
+        <SectionHeading
+          title="What I Bring to a DevOps Team"
+          description="The hiring loop in one row: GitOps automation, safe releases, security gates, and AI-augmented on-call."
+        />
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {items.map((it, i) => (
             <motion.div

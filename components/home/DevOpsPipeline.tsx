@@ -8,8 +8,10 @@ import {
   Container,
   FileCode2,
   Ship,
+  Rocket,
   Cloud,
   Activity,
+  Bot,
   Timer,
   Gauge,
   CheckCircle2,
@@ -20,20 +22,22 @@ import { Button } from "@/components/ui/Button";
 import { StageTimeline } from "@/components/ui/StageTimeline";
 
 const stages = [
-  { icon: Code2, phase: "Source", title: "Code", detail: "Git · TypeScript", color: "#4f7dd9" },
-  { icon: Workflow, phase: "Build", title: "CI/CD", detail: "Jenkins · GitHub Actions · GitLab", color: "#d97706" },
-  { icon: ShieldCheck, phase: "Secure", title: "Security Scan", detail: "Trivy image scanning", color: "#e11d48" },
-  { icon: Container, phase: "Package", title: "Docker Build → ECR", detail: "Containerize", color: "#0284c7" },
-  { icon: FileCode2, phase: "Provision", title: "Terraform", detail: "IaC provision", color: "#7c3aed" },
-  { icon: Ship, phase: "Deploy", title: "Kubernetes (EKS) / ArgoCD", detail: "GitOps deploy", color: "#159e6a" },
-  { icon: Cloud, phase: "Run", title: "AWS (VPC/ALB/Route 53) · Vercel", detail: "Cloud + edge", color: "#ea580c" },
-  { icon: Activity, phase: "Observe", title: "Prometheus / Grafana", detail: "Monitor", color: "#c026d3" },
+  { icon: Code2, phase: "Source", title: "Code + AI review", detail: "Git · LLM diff check", color: "#4f7dd9" },
+  { icon: Workflow, phase: "Build", title: "CI: Jenkins / GH Actions", detail: "Test · SBOM", color: "#d97706" },
+  { icon: ShieldCheck, phase: "Secure", title: "Trivy + cosign + Kyverno", detail: "Policy-gated", color: "#e11d48" },
+  { icon: Container, phase: "Package", title: "Docker → ECR + tag commit", detail: "CI commits to GitOps repo", color: "#0284c7" },
+  { icon: FileCode2, phase: "Provision", title: "Terraform", detail: "VPC/EKS/IAM", color: "#7c3aed" },
+  { icon: Ship, phase: "Sync", title: "ArgoCD auto-sync + self-heal", detail: "App-of-Apps · Image Updater", color: "#159e6a" },
+  { icon: Rocket, phase: "Release", title: "Rollouts canary", detail: "Prometheus-gated", color: "#f59e0b" },
+  { icon: Cloud, phase: "Run", title: "EKS + ALB / Route 53", detail: "Autoscaled", color: "#ea580c" },
+  { icon: Activity, phase: "Observe", title: "Prometheus / Grafana / Loki", detail: "SLO alerts", color: "#c026d3" },
+  { icon: Bot, phase: "Augment", title: "AI triage → Slack", detail: "Logs + runbook", color: "#22c55e" },
 ];
 
 const outcomes = [
-  { icon: Timer, metric: "30% faster", label: "deployments via automated pipelines" },
-  { icon: Gauge, metric: "99% uptime", label: "production Kubernetes clusters" },
-  { icon: CheckCircle2, metric: "Zero critical vulns", label: "shipped — scanned in-pipeline" },
+  { icon: Timer, metric: "30% faster", label: "deploys via CI → GitOps automation" },
+  { icon: Gauge, metric: "99% uptime", label: "EKS + canary rollouts + self-heal" },
+  { icon: CheckCircle2, metric: "Zero critical vulns", label: "Trivy + signed images + policy gates" },
 ];
 
 export function DevOpsPipeline() {
@@ -41,16 +45,16 @@ export function DevOpsPipeline() {
     <section className="bg-bg-elevated/30 border-y border-border-soft">
       <PageContainer className="py-20 sm:py-24">
         <p className="font-mono-tag text-xs uppercase tracking-widest text-accent mb-4">
-          DevOps · CI/CD · GitOps
+          DevOps · GitOps (ArgoCD) · AIOps
         </p>
         <SectionHeading
-          title="From Code to Production"
-          description="How I take an application from a commit to a monitored, running service — follow the flow top to bottom."
+          title="From git push to Self-Healing Production"
+          description="CI builds and scans — ArgoCD deploys. App repo commits become ECR images, image tags become GitOps commits, and ArgoCD syncs dev → staging → prod with canaries and AI-watched SLOs."
         />
 
         <div className="rounded-2xl border border-border-soft bg-bg-elevated/50 p-5 sm:p-8">
           <div className="mx-auto max-w-2xl">
-            <StageTimeline stages={stages} entry="git push" exit="Live URL · monitored" />
+            <StageTimeline stages={stages} entry="git push (app repo)" exit="Canary prod · monitored · AI-watched" />
           </div>
         </div>
 
@@ -73,8 +77,8 @@ export function DevOpsPipeline() {
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          <Button href="/devops" variant="secondary">Explore DevOps Practice</Button>
-          <Button href="/projects" variant="ghost">View Projects</Button>
+          <Button href="/devops" variant="secondary">Explore ArgoCD + AI Practice</Button>
+          <Button href="/projects" variant="ghost">View GitOps Projects</Button>
         </div>
       </PageContainer>
     </section>
