@@ -2,7 +2,7 @@ import { ExperienceItem } from "@/types";
 
 export const experience: ExperienceItem[] = [
   {
-    role: "DevOps Engineer (GitOps · ArgoCD · AI-Augmented Delivery)",
+    role: "Full Stack Developer (MERN + Deployment / GitOps Ownership)",
     company: "ChitXpert · MyChits — Vijaya Vinayak Chitfunds Pvt. Ltd.",
     location: "Bengaluru, India",
     start: "April 2025",
@@ -10,13 +10,14 @@ export const experience: ExperienceItem[] = [
     current: true,
     type: "freelance",
     summary:
-      "Own the GitOps platform for a licensed financial-services company: app repos + a dedicated GitOps repo, ArgoCD App-of-Apps across dev/staging/prod on EKS, with AI-assisted incident response on top.",
+      "Joined as a Full Stack Developer (MERN) and earned deployment ownership — took over CI/CD and production releases end-to-end, introducing a GitOps operating model (ArgoCD App-of-Apps across dev/staging/prod on EKS) with AI-assisted on-call on top.",
     highlights: [
-      "GitOps automation: split app + GitOps repos; Jenkins CI builds → Trivy-scans → pushes to ECR → commits image tag; ArgoCD (automated sync + self-heal + prune) rolls dev → staging → prod with zero manual kubectl",
+      "Full-stack delivery: built MERN enrolment, reporting, and collection workflows (React, Node.js, Express.js, MongoDB) as deployment-ready services",
+      "With deployment access, introduced GitOps automation: split app + GitOps repos; Jenkins CI builds → Trivy-scans → pushes to ECR → commits image tag; ArgoCD (automated sync + self-heal + prune) rolls dev → staging → prod with zero manual kubectl",
       "ArgoCD at scale: ApplicationSets per environment, sync waves/hooks for DB-migrate-before-app ordering, Image Updater for auto tag bumps, Notifications to Slack on sync/health",
       "Progressive delivery: Argo Rollouts canary (10% → 50% → 100%) gated by Prometheus success-rate analysis; automatic rollback on SLO breach — 100% uptime through peak traffic",
       "AI-augmented on-call: Alertmanager webhook → LLM enriches every page with log summary + probable cause + runbook link in Slack; k8sgpt operator triages CrashLoop/OOM in-cluster — faster MTTR vs raw alerts",
-      "60% faster customer onboarding: MERN enrolment module (React, Node.js, Express.js, MongoDB) shipped through the same GitOps pipeline",
+      "60% faster customer onboarding: MERN enrolment module shipped through the same GitOps pipeline",
       "97% reporting accuracy: real-time payment-reporting engine with WhatsApp notifications via REST APIs, verified by reconciliation audits",
     ],
   },

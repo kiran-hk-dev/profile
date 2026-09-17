@@ -118,8 +118,8 @@ export const projects: Project[] = [
     category: "Full Stack + GitOps",
     duration: "April 2025 – Present",
     description:
-      "ChitXpert/MyChits platform for licensed chit-fund operations — customer enrolment, real-time payment reporting, and collection workflows — shipped through an ArgoCD GitOps pipeline (CI → ECR → GitOps tag commit → auto-sync) with AI-enriched on-call for Vijaya Vinayak Chitfunds Pvt. Ltd.",
-    role: "DevOps Engineer & Full-Stack Developer",
+      "ChitXpert/MyChits platform for licensed chit-fund operations — built as a Full Stack Developer (MERN enrolment, real-time payment reporting, collection workflows), then given deployment ownership: introduced an ArgoCD GitOps pipeline (CI → ECR → GitOps tag commit → auto-sync) with AI-enriched on-call for Vijaya Vinayak Chitfunds Pvt. Ltd.",
+    role: "Full Stack Developer (MERN + Deployment / GitOps Ownership)",
     technologies: {
       frontend: ["React", "React Hooks", "Tailwind CSS"],
       backend: ["Node.js", "Express.js", "REST APIs"],
@@ -165,12 +165,12 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: "DevOps (GitOps + AI)",
+        title: "DevOps — earned via deployment ownership (GitOps + AI)",
         items: [
-          "Containerized services with Docker; ECR-backed images",
-          "ArgoCD automated sync + self-heal + Image Updater; zero manual kubectl to prod",
-          "Argo Rollouts canaries gated by Prometheus; 100% uptime through peaks",
-          "LLM alert enrichment (logs + runbook link → Slack) with k8sgpt in-cluster triage",
+          "After getting deployment access, containerized services with Docker; ECR-backed images",
+          "Introduced ArgoCD automated sync + self-heal + Image Updater; zero manual kubectl to prod",
+          "Added Argo Rollouts canaries gated by Prometheus; 100% uptime through peaks",
+          "Added LLM alert enrichment (logs + runbook link → Slack) with k8sgpt in-cluster triage",
         ],
       },
     ],

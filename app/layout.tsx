@@ -28,15 +28,16 @@ const siteUrl = "https://kiran-hk-portfolio.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Kiran H K | DevOps Engineer · GitOps (ArgoCD) · AI-Augmented Platform",
+    default: "Kiran H K | Full Stack Developer (MERN) · DevOps / GitOps (ArgoCD)",
     template: "%s | Kiran H K",
   },
   description:
-    "Portfolio of Kiran H K, DevOps Engineer (5+ years): ArgoCD GitOps (App-of-Apps, Image Updater, Rollouts canaries), AWS EKS + Terraform, Jenkins/GitHub Actions CI (Trivy + cosign), Prometheus/Grafana/Loki observability with LLM incident triage, and MERN/Next.js apps.",
+    "Portfolio of Kiran H K, Full Stack Developer (MERN + Next.js, 5+ years) with deployment ownership: ArgoCD GitOps (App-of-Apps, Image Updater, Rollouts canaries), AWS EKS + Terraform, Jenkins/GitHub Actions CI (Trivy + cosign), Prometheus/Grafana/Loki with LLM incident triage.",
   keywords: [
     "Kiran H K",
+    "Full Stack Developer",
+    "MERN",
     "DevOps Engineer",
-    "GitOps",
     "ArgoCD",
     "Argo Rollouts",
     "AIOps",

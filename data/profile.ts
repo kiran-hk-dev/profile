@@ -2,7 +2,7 @@ import { Profile } from "@/types";
 
 export const profile: Profile = {
   name: "Kiran H K",
-  title: "DevOps Engineer · GitOps (ArgoCD) · AI-Augmented Platform",
+  title: "Full Stack Developer (MERN) · DevOps / GitOps (ArgoCD)",
   experience: "5+ Years",
   location: "Bengaluru, Karnataka, India",
   openTo: "Bengaluru / Hyderabad",
@@ -12,12 +12,12 @@ export const profile: Profile = {
   github: "https://github.com/kiranmychits2025",
   githubUsername: "kiranmychits2025",
   summary:
-    "DevOps Engineer (5+ years) specialising in GitOps with ArgoCD and AI-augmented delivery on AWS EKS: automated sync + self-heal + prune, App-of-Apps / ApplicationSets, Image Updater, Argo Rollouts canary releases, Terraform IaC, and Jenkins/GitHub Actions pipelines that build → scan (Trivy) → push to ECR → update GitOps repo. Ships observable, secure platforms — Prometheus/Grafana/Loki + OpenTelemetry, Kyverno policies, External Secrets — with LLM-powered incident triage (alert → AI summary + runbook → Slack) cutting MTTR. Track record: 30% faster deployments, 99% Kubernetes uptime, zero critical vulns shipped. Also a MERN/Next.js full-stack developer, so services are built deployment-ready from day one.",
+    "Full Stack Developer (MERN + Next.js, 5+ years) who earned deployment ownership in production: after getting access to releases at ChitXpert/MyChits, introduced GitOps with ArgoCD (App-of-Apps / ApplicationSets, Image Updater, auto-sync + self-heal) and Argo Rollouts canaries on AWS EKS, with Terraform IaC and Jenkins/GitHub Actions CI (Trivy + cosign → ECR → GitOps tag commit). Added AI-augmented on-call — Prometheus/Grafana/Loki alerts enriched by LLM summaries + runbooks in Slack, k8sgpt in-cluster. Outcomes: 30% faster deployments, 99% Kubernetes uptime, zero critical vulns shipped, plus 60% faster onboarding and 97% reporting accuracy from the MERN app layer. Now targeting DevOps Engineer roles in 2026.",
 };
 
 export const heroCta = {
-  headline: "I Ship GitOps Platforms That Deploy Themselves.",
-  subheadline: "ArgoCD GitOps · AWS EKS · Terraform · AI-Augmented DevOps",
+  headline: "Full Stack Developer Who Owns Deployments End-to-End.",
+  subheadline: "MERN + Next.js Full-Stack · ArgoCD GitOps · AWS EKS · AI-Augmented DevOps",
   supporting:
-    "I run production Kubernetes the 2026 way: app repo commits trigger CI (build/test/Trivy-scan/push to ECR), CI updates the GitOps repo, and ArgoCD syncs dev → staging → prod with automated sync, self-heal, Rollouts canaries, and AI-enriched alerts — so releases are zero-downtime, auditable, and fast to roll back.",
+    "I joined as a MERN full-stack developer and earned deployment ownership: now app commits flow through CI (build/test/Trivy-scan/push to ECR), CI updates the GitOps repo, and ArgoCD syncs dev → staging → prod with self-heal, Rollouts canaries, and AI-enriched alerts — zero-downtime, auditable, fast to roll back.",
 };
