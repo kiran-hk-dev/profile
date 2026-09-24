@@ -118,7 +118,7 @@ export const projects: Project[] = [
     category: "DevOps · Docker · Kubernetes",
     duration: "Jun 2022 – Present",
     description:
-      "Dockerized microservices orchestrated on Kubernetes for Native Minds Technologies — handles live traffic spikes with zero-downtime rollouts, Jenkins pipelines across dev/staging/prod, and Prometheus/Grafana monitoring.",
+      "Dockerized microservices orchestrated on Kubernetes for Native Minds Technologies — running on both AWS and DigitalOcean — handles live traffic spikes with zero-downtime rollouts, Jenkins pipelines across dev/staging/prod, and Prometheus/Grafana monitoring.",
     role: "DevOps Engineer",
     technologies: {
       devops: ["Docker", "Kubernetes", "Jenkins", "GitLab CI"],
@@ -154,10 +154,10 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: "Step 3 — Kubernetes clusters",
+        title: "Step 3 — Kubernetes on AWS + DigitalOcean",
         items: [
-          "Engineered and maintained clusters wired directly into the CI/CD pipeline",
-          "Sustained 99% uptime per cluster monitoring SLAs",
+          "Engineered and maintained clusters on both AWS and DigitalOcean, wired directly into the CI/CD pipeline",
+          "Sustained 99% uptime per cluster monitoring SLAs across both clouds",
           "How: infra changes reviewed, never click-ops; rolling updates with health checks",
         ],
       },
@@ -175,7 +175,7 @@ export const projects: Project[] = [
       { label: "Docker Images", detail: "Standardized, scanned" },
       { label: "Jenkins CI/CD", detail: "Dev → staging → prod" },
       { label: "Kubernetes", detail: "Zero-downtime rollouts" },
-      { label: "AWS (ECS / EKS)", detail: "Scaled production workloads" },
+      { label: "AWS + DigitalOcean", detail: "Scaled workloads on both clouds" },
       { label: "Prometheus / Grafana", detail: "Monitoring + alerting" },
     ],
     kpis: ["30% faster deployments", "99% cluster uptime", "+30% scalability"],

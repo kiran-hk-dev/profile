@@ -27,10 +27,10 @@ export const experience: ExperienceItem[] = [
     current: false,
     type: "full-time",
     summary:
-      "Platform team for the Retail Billing Software — converted from full-time employee to freelance engagement in Aug 2023 on the same team.",
+      "Platform team for the Retail Billing Software, running on both AWS and DigitalOcean — converted from full-time employee to freelance engagement in Aug 2023 on the same team.",
     highlights: [
       "30% higher scalability (−10% image size): increased load-test throughput by 30% and cut average deployment package size by 10% by containerizing microservices with Docker and standardizing build images across environments",
-      "99% cluster uptime: sustained 99% uptime for production workloads per cluster monitoring SLAs by engineering and maintaining Kubernetes clusters wired directly into the CI/CD pipeline",
+      "99% cluster uptime: sustained 99% uptime for production workloads on AWS and DigitalOcean per cluster monitoring SLAs by engineering and maintaining Kubernetes clusters wired directly into the CI/CD pipeline",
       "30% faster deployments (−10% errors): cut deployment time by 30% and deployment errors by 10% per release-cycle logs by designing automated Jenkins CI/CD pipelines spanning dev, staging, and production",
       "10% faster incident resolution: reduced mean time to resolution by 10% per incident-response tracking by implementing real-time monitoring and alerting with Prometheus and Grafana",
       "Zero critical vulnerabilities shipped: eliminated critical container vulnerabilities before release per pre-deployment scan results by integrating automated image scanning and access-control checks into the pipeline",
