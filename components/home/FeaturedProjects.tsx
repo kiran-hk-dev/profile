@@ -5,12 +5,13 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { projects } from "@/data/projects";
 
 export function FeaturedProjects() {
+  const featured = projects.filter((p) => p.featured).slice(0, 4);
   return (
     <section id="projects" className="scroll-mt-24">
       <Container className="py-20 sm:py-24">
-        <SectionHeading title="Featured Projects" description="Real projects I've built and operated, with their actual outcomes." />
+        <SectionHeading title="Featured Projects" description="Real projects I've built and operated, with how I built each one." />
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((p, i) => (
+          {featured.map((p, i) => (
             <ProjectCard project={p} key={p.slug} index={i} />
           ))}
         </div>

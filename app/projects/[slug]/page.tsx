@@ -30,12 +30,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     <Container className="py-20 sm:py-28">
       <div className="max-w-3xl">
         <p className="font-mono-tag text-xs text-text-faint">{project.duration}</p>
-        <div className="flex items-baseline gap-3 flex-wrap mt-2">
+        <div className="mt-2 flex flex-wrap items-baseline gap-3">
           <h1 className="font-display text-4xl text-text">{project.title}</h1>
           {project.subtitle && <span className="font-mono-tag text-lg text-accent">/ {project.subtitle}</span>}
         </div>
         <p className="mt-2 text-sm text-text-muted">{project.category}</p>
-        <p className="mt-6 text-text-muted leading-relaxed text-lg">{project.description}</p>
+        <p className="mt-6 text-lg leading-relaxed text-text-muted">{project.description}</p>
         <p className="mt-4 text-sm text-text-faint">Role: <span className="text-text-muted">{project.role}</span></p>
 
         {(project.liveDemo || project.github) && (
@@ -75,16 +75,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </div>
 
       <div className="mt-14">
-        <h2 className="font-display text-xl text-text mb-5">Architecture</h2>
+        <h2 className="mb-2 font-display text-xl text-text">Architecture & Flow</h2>
+        <p className="mb-5 text-sm text-text-muted">Top to bottom — how requests and releases move through this project.</p>
         <div className="rounded-2xl border border-border-soft bg-bg-elevated/50 p-6 sm:p-8">
-          <PipelineDiagram nodes={project.architecture} direction="horizontal" />
+          <PipelineDiagram nodes={project.architecture} direction="vertical" />
         </div>
       </div>
 
-      <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {techEntries.map(([category, items]) => (
-          <div key={category}>
-            <h3 className="font-mono-tag text-xs uppercase tracking-wide text-accent mb-3">{category}</h3>
+          <div key={category} className="rounded-xl border border-border-soft bg-bg-elevated/60 p-5">
+            <h3 className="mb-3 font-mono-tag text-xs uppercase tracking-wide text-accent">{category}</h3>
             <div className="flex flex-wrap gap-2">
               {items.map((t) => (
                 <Badge key={t}>{t}</Badge>
@@ -96,15 +97,15 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {project.features.length > 0 && (
         <div className="mt-16">
-          <h2 className="font-display text-xl text-text mb-6">Features</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <h2 className="mb-6 font-display text-xl text-text">What it does</h2>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {project.features.map((f) => (
               <div key={f.title} className="rounded-xl border border-border-soft bg-bg-elevated p-5">
                 <h3 className="text-sm font-medium text-text">{f.title}</h3>
                 <ul className="mt-3 space-y-1.5">
                   {f.items.map((it) => (
-                    <li key={it} className="text-sm text-text-muted flex gap-2">
-                      <span className="mt-1.5 h-1 w-1 rounded-full bg-accent shrink-0" />
+                    <li key={it} className="flex gap-2 text-sm text-text-muted">
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
                       {it}
                     </li>
                   ))}
@@ -116,15 +117,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       )}
 
       <div className="mt-16">
-        <h2 className="font-display text-xl text-text mb-6">My Contributions</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {project.contributions.map((c) => (
-            <div key={c.title} className="rounded-xl border border-border-soft bg-bg-elevated p-5">
-              <h3 className="text-sm font-medium text-text">{c.title}</h3>
+        <h2 className="mb-2 font-display text-xl text-text">How I built it — step by step</h2>
+        <p className="mb-6 text-sm text-text-muted">The actual order I worked in, and what I did at each step.</p>
+        <div className="grid gap-5 md:grid-cols-2">
+          {project.contributions.map((c, i) => (
+            <div key={c.title} className="rounded-xl border border-border-soft bg-bg-elevated p-5 sm:p-6">
+              <p className="font-mono-tag text-[11px] font-bold uppercase tracking-widest text-accent">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-1.5 text-[15px] font-semibold text-text">{c.title}</h3>
               <ul className="mt-3 space-y-1.5">
                 {c.items.map((it) => (
-                  <li key={it} className="text-sm text-text-muted flex gap-2">
-                    <span className="mt-1.5 h-1 w-1 rounded-full bg-accent-2 shrink-0" />
+                  <li key={it} className="flex gap-2 text-sm leading-relaxed text-text-muted">
+                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-2" />
                     {it}
                   </li>
                 ))}

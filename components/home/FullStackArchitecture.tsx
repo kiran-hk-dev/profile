@@ -55,7 +55,7 @@ const capabilities = [
   { icon: Network, title: "API Development", detail: "REST routes, controllers, middleware" },
   { icon: Database, title: "Database Design", detail: "Schemas, RLS policies & queries" },
   { icon: Lock, title: "Authentication", detail: "Auth flows across web & mobile" },
-  { icon: Rocket, title: "Deployment", detail: "Vercel edge + Kubernetes rollouts" },
+  { icon: Rocket, title: "Deployment", detail: "Vercel edge + Kubernetes rolling updates" },
 ];
 
 /** One flow line splitting into two (entry → two clients). */

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GitBranch, Rocket, ShieldCheck, Bot } from "lucide-react";
+import { GitBranch, Rocket, ShieldCheck, Activity } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { profile } from "@/data/profile";
@@ -9,23 +9,23 @@ import { profile } from "@/data/profile";
 const highlights = [
   {
     icon: GitBranch,
-    title: "GitOps (ArgoCD)",
-    detail: "App-of-Apps · Image Updater · auto-sync",
+    title: "CI/CD Pipelines",
+    detail: "Jenkins · GitLab CI · GitHub",
   },
   {
     icon: Rocket,
-    title: "EKS + Terraform + Rollouts",
-    detail: "Canary releases · IaC · autoscaling",
+    title: "Docker + Kubernetes",
+    detail: "AWS ECS / EKS · scaling",
   },
   {
     icon: ShieldCheck,
-    title: "DevSecOps",
-    detail: "Trivy · cosign · Kyverno · ESO",
+    title: "MERN + Postman",
+    detail: "React · Express · validated APIs",
   },
   {
-    icon: Bot,
-    title: "AI-Augmented Ops",
-    detail: "LLM triage · k8sgpt · ChatOps",
+    icon: Activity,
+    title: "Monitoring + Security",
+    detail: "Prometheus · Grafana · scans",
   },
 ];
 

@@ -9,15 +9,14 @@ import { Button } from "@/components/ui/Button";
 import { PipelineDiagram } from "@/components/ui/PipelineDiagram";
 
 const nodes = [
-  { label: "App repo: Next.js / Node API", detail: "CI builds + AI diff review" },
-  { label: "Trivy scan → ECR + cosign", detail: "Signed, gated images" },
-  { label: "CI commits tag → GitOps repo", detail: "Only deploy trigger" },
-  { label: "Terraform: VPC / EKS / IAM", detail: "S3 remote state" },
-  { label: "ArgoCD App-of-Apps (auto-sync)", detail: "ApplicationSets · self-heal" },
-  { label: "Argo Rollouts canary", detail: "Prometheus analysis gate" },
-  { label: "EKS + ALB / Route 53", detail: "IRSA · External Secrets" },
-  { label: "Prometheus / Grafana / Loki", detail: "SLO burn-rate alerts" },
-  { label: "AI triage → Slack + runbook", detail: "k8sgpt · LLM summary" },
+  { label: "GitHub repo: React / Node app", detail: "Features + PRs" },
+  { label: "Jenkins / GitLab CI", detail: "Install, test, build" },
+  { label: "Postman validation", detail: "Every endpoint checked" },
+  { label: "Image scan + access checks", detail: "Zero critical vulns" },
+  { label: "Docker images", detail: "Standardized builds" },
+  { label: "K8s rolling update", detail: "Zero-downtime deploys" },
+  { label: "AWS ECS / EKS", detail: "Scaled production traffic" },
+  { label: "Prometheus / Grafana", detail: "Monitoring + alerts" },
 ];
 
 export function Hero() {
@@ -25,7 +24,7 @@ export function Hero() {
     <section className="relative overflow-hidden bg-grid">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-bg/40 to-bg" />
       <Container className="relative py-16 sm:py-24 lg:py-28">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-14 lg:gap-8 items-start">
+        <div className="grid items-start gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,7 +67,7 @@ export function Hero() {
             className="relative"
           >
             <div className="rounded-2xl border border-border-soft bg-bg-elevated/60 backdrop-blur-sm p-5 sm:p-6">
-              <p className="font-mono-tag text-xs text-text-faint mb-4">{"// git push → AI-watched production"}</p>
+              <p className="font-mono-tag text-xs text-text-faint mb-4">{"// git push → monitored production"}</p>
               <PipelineDiagram nodes={nodes} direction="vertical" />
             </div>
           </motion.div>

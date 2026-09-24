@@ -5,10 +5,10 @@ import { Container } from "@/components/ui/Container";
 import { profile } from "@/data/profile";
 
 const stats = [
-  { value: profile.experience, label: "DevOps · GitOps (ArgoCD) on EKS" },
-  { value: "ArgoCD", label: "App-of-Apps · auto-sync · Rollouts canary" },
-  { value: "AI-Augmented", label: "LLM triage · k8sgpt · ChatOps" },
-  { value: "99% Uptime", label: "Zero critical vulns · −30% deploy time" },
+  { value: profile.experience, label: "DevOps · MERN across product teams" },
+  { value: "30% faster", label: "Deployments via Jenkins automation" },
+  { value: "99% Uptime", label: "Kubernetes · zero critical vulns shipped" },
+  { value: "60% faster", label: "Onboarding · 97% reporting accuracy" },
 ];
 
 export function Stats() {
